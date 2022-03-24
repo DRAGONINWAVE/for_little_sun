@@ -1,0 +1,5 @@
+invoice = list(range(60))
+a = slice(0,6) #slice(start,stop,step)
+print(invoice[a])
+b = slice(6,55)
+print(invoice[b])
