@@ -51,10 +51,3 @@ kdeplot_fig = f.get_figure()
 kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")))
 end_time = time.time()
 print('cost_time',end_time-start_time,'s')
-
-
-
-
-
-
-
