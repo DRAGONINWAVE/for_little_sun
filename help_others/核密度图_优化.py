@@ -22,8 +22,8 @@ print(type(y),y)
 #设置大的画图背景，为白色
 sns.set_theme(style='white')
 f, axes = plt.subplots(3, 1, figsize=(9,18), sharex=True)
+i = 5
 for ax, s in zip(axes.flat, np.linspace(0, 3, 10)):
-    i = 5
     cmaps = sns.cubehelix_palette(start=s,light=1,as_cmap=True)
     x = cleared_data.iloc[:,i].values
     print(x)
