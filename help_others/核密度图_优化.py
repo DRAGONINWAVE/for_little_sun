@@ -17,36 +17,51 @@ cleared_data = pd.read_excel('冬季温度及其各类影响指数_c1.xlsx')
 # JAN_NDBI_C = cleared_data['JAN_NDBI_C'] #自变量
 # JAN_MNDWI_ = cleared_data['JAN_MNDWI_'] #自变量
 y = cleared_data.iloc[:,4].values  #因变量
-print(type(y),y)
+# print(type(y),y)
 
 #设置大的画图背景，为白色
-sns.set_theme(style='white')
-f, axes = plt.subplots(3, 1, figsize=(9,18), sharex=True)
+sns.set_theme(style='dark')
+f, axes = plt.subplots(3, 1, figsize=(9,18),
+                       # sharex = True
+                       )
 i = 5
+k = 0
 for ax, s in zip(axes.flat, np.linspace(0, 3, 10)):
+    # print(ax)
+    plt.sca(ax)
     cmaps = sns.cubehelix_palette(start=s,light=1,as_cmap=True)
+    ls = ['JAN_NDVI_c','JAN_NDBI_C','JAN_MNDWI_']
     x = cleared_data.iloc[:,i].values
-    # print(x)
-    # print(y)
+    df = pd.DataFrame(dict(x1 = x,JAN_tem=y))
     sns.kdeplot(
-        x = x , y = y,
+        x = 'x1' , y = 'JAN_tem',
+        data = df,
         cmap = cmaps,
-        levels = 15,
+        levels = 10,
         fill = True,
-        # clip=(-5, 5), cut=10,
-        thresh=0,
-        # ax=ax,
+        thresh=.2,
+        ax=ax,
+        # x_label = x_label
     )
-    x1 = list(x)
+    x1_1 = list(x)
 
-    slope1, intercept1, r1, p1_1, std_err1 = stats.linregress(x1, y)
-    def myfunc1(x1):
-        return slope1 * x1 + intercept1
-    # print(slope, intercept, r, p, std_err)
-
-    mymodel1 = list(map(myfunc1, x1))
-    plt.plot(x1, mymodel1, linestyle="--")
+    slope1, intercept1, r1, p1_1, std_err1 = stats.linregress(x1_1, y)
+    print(slope1, intercept1, r1, p1_1, std_err1)
+    p = sns.regplot(x='x1', y='JAN_tem', data=df,ci=None,scatter=False,
+                label=f'y={slope1:.2f}*x+{intercept1:.2f}',
+                ax=axes[k]
+                )
+    plt.xlabel(ls[k])
+    p.legend()
+    sns.rugplot(df.x1,
+                color="b",
+                ax=ax)
+    sns.rugplot(df.JAN_tem,
+                vertical=True,
+                 ax=ax,
+                color='b')
     i = i + 1
+    k = k + 1
 kdeplot_fig = f.get_figure()
 kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")))
 end_time = time.time()
