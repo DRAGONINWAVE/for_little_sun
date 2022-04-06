@@ -6,7 +6,7 @@ from scipy import stats
 import time
 
 
-
+start_time = time.time()
 # #导入数据
 # raw_data = pd.read_excel(r'D:\piles\冬季温度及其各类影响指数.xlsx')
 # #清理数据，删除所有存在空白数据的行
@@ -26,8 +26,8 @@ i = 5
 for ax, s in zip(axes.flat, np.linspace(0, 3, 10)):
     cmaps = sns.cubehelix_palette(start=s,light=1,as_cmap=True)
     x = cleared_data.iloc[:,i].values
-    print(x)
-    print(y)
+    # print(x)
+    # print(y)
     sns.kdeplot(
         x = x , y = y,
         cmap = cmaps,
@@ -49,6 +49,8 @@ for ax, s in zip(axes.flat, np.linspace(0, 3, 10)):
     i = i + 1
 kdeplot_fig = f.get_figure()
 kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")))
+end_time = time.time()
+print('cost_time',end_time-start_time,'s')
 
 
 
