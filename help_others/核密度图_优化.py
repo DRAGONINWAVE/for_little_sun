@@ -64,7 +64,7 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
                 ax=ax
                 )
     plt.xlabel(ls[k])
-    plt.ylabel(ls[0]+'℃')
+    plt.ylabel(ls[0]+'°C')
     p.legend()
     k = k + 1
     i = i + 1
@@ -81,8 +81,8 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
                  ax=ax,
                 color='b')
 
-ax.set(xlim=(-1, 1), ylim=(-12, 26))
-f.subplots_adjust(0, 0, 1, 1, .08, .08)
+ax.set(xlim=(-1, 1),ylim=(-25,45))
+# f.subplots_adjust(0, 0, 1, 1, .08, .08)
 kdeplot_fig = f.get_figure()
 kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")))
 end_time = time.time()
