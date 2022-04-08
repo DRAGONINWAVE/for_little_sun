@@ -4,7 +4,7 @@ import pandas as pd
 import seaborn as sns
 from scipy import stats
 import time
-from numpy import cuda
+from numba import cuda
 import math
 
 @cuda.jit
