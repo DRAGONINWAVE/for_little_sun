@@ -57,7 +57,7 @@ for Filename in os.listdir(filepath):
     month = list(range(1,13))*40
     year = list(range(1977,2017))
     month_mean = {'月':month,'RSmonth_mean':lRs,'Smonth_mean':lS,'Nmonth_mean':lN}
-    # print(month_mean)
+    print(len(month),len(lRs),len(lS),len(lN))
     year_sum = {'年':year,'y_Rs':lyRs,'y_S':lyS,'y_N':lyN}
     # print(year_sum)
     MM = pd.DataFrame(data=month_mean)
