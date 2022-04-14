@@ -18,14 +18,14 @@ start_time = time.time()
 #     cleared_data.to_excel('D:\\TD\\help_others\\hsf_kdeplot\\'+name,index=False)
 
 #设置大的画图背景，为白色
-sns.set_theme(style='dark')
-f, axes = plt.subplots(3,3, figsize=(27,21),
+sns.set_theme(style='white')
+f, axes = plt.subplots(3,3, figsize=(27,27),
                        # sharex = True
                        )
 i = 4
 k = 1
 l = 0
-for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 10)):
+for ax, s in zip(axes.flatten(order='F'), np.linspace(2, 3, 10)):
     # print(ax)
     plt.sca(ax)
     cmaps = sns.cubehelix_palette(start=s,light=1,as_cmap=True)
@@ -38,23 +38,24 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 10)):
     sns.kdeplot(
         x = 'x1' , y = 'JAN_tem',
         data = df,
-        cmap = cmaps,
-        levels = 10,
-        fill = True,
+        cmap = 'rocket',
+        # color = '#DC143C',
+        levels = 5,
+        # fill = True,
         thresh=.2,
         ax=ax,
     )
-    sns.scatterplot(
-        x='x1', y='JAN_tem',
-        data=df,
+    plt.scatter(
+        df.x1, df.JAN_tem,
+        # data=df,
         # color = '#00CED1',
-        color = 'black',
-        marker = '+',
+        # color = 'blue',
+        # marker = '+',
         # levels=10,
         # fill=True,
         # thresh=.2,
-        alpha = 0.2,
-        ax=ax,
+        # alpha = 0.2,
+        # ax=ax,
     )
     x1_1 = list(x)
 
