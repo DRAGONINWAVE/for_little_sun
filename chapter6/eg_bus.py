@@ -23,3 +23,7 @@ a = [10,20]
 b = [a,30]
 a.append(b)
 print(a)
+bus2.drop('Bill')
+bus2.pick('longyan')
+bus4 = Bus()
+print(bus4.passengers)
