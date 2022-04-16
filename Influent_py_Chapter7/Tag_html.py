@@ -12,6 +12,8 @@ def tag(name,*content,class_=None,**attrs):
     else:
         return f'<{name}{attr_str} />'
 
-print(tag('br')+'\n'+tag('p','hello',id=33))
+print(tag('br')+'\n'+tag('p','hello',id=33,))
 #<br />
 #<p id="33">hello</p>
+print(tag('p','hello',class_='sidebar'))
+#<p class="sidebar">hello</p>
