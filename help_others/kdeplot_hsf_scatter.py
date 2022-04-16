@@ -37,8 +37,8 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     y = cleared_data1.iloc[:, -4].values  # 因变量
     x = cleared_data1.iloc[:, i].values
     df = pd.DataFrame(dict(x1 = x,JAN_tem=y))
-    if ls[k] == 'NDVI':
-        df = df.drop(df[(df['x1']< 0)].index)
+    # if ls[k] == 'NDVI':
+    #     df = df.drop(df[(df['x1']< 0)].index)
         # df.to_excel('NDVI'+season[l]+'.xlsx',index=False)
     # sns.kdeplot(
     #     x = 'x1' , y = 'JAN_tem',
@@ -73,7 +73,7 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
                 color = 'black'
                 )
     plt.xlabel(season[l]+'_'+ls[k])
-    plt.ylabel(season[l]+'_'+ls[0]+'(°C)')
+    plt.ylabel(season[l]+'_'+ls[0].title()+'(°C)')
     p.legend(loc = 'upper right')
     k = k + 1
     i = i + 1
