@@ -7,4 +7,4 @@ def reverse(word):
 
 print(reverse('testing')) #gnitset
 
-print(sorted(fruits,key=reverse)) #['banana', 'apple', 'fig', 'raspberry', 'strawberry', 'cherry']
+print(sorted(fruits,key=reverse)) #['banana', 'apple', 'fig', 'raspberry', 'strawberry', 'cherry']  it's funny hah?!
