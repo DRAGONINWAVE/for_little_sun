@@ -9,3 +9,6 @@ print(fact)   #<function factorial at 0x0000020E4CA89048>
 print(fact(5)) #120
 print(map(factorial,range(11)))  #<map object at 0x000001A86B3318C8>
 print(list(map(factorial,range(11)))) #[1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800]
+
+print(list(map(factorial,filter(lambda  n:n%2,range(11)))))
+#[1, 6, 120, 5040, 362880] means using odd numbers
