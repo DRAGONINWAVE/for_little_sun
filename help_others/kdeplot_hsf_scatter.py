@@ -34,19 +34,22 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     season = ['Spring','Summer','Fall','Winter']
     cleared_data1 = pd.read_excel('D:\\TD\\help_others\\hsf_kdeplot\\'+season[l]+'.xlsx')
     ls = cleared_data1.columns.values[-4:]
-    y = cleared_data1.iloc[:,-4].values  #因变量
-    x = cleared_data1.iloc[:,i].values
+    y = cleared_data1.iloc[:, -4].values  # 因变量
+    x = cleared_data1.iloc[:, i].values
     df = pd.DataFrame(dict(x1 = x,JAN_tem=y))
-    sns.kdeplot(
-        x = 'x1' , y = 'JAN_tem',
-        data = df,
-        cmap = 'rocket',
-        # color = '#DC143C',
-        levels = 5,
-        # fill = True,
-        thresh=.2,
-        ax=ax,
-    )
+    if ls[k] == 'NDVI':
+        df = df.drop(df[(df['x1']< 0)].index)
+        # df.to_excel('NDVI'+season[l]+'.xlsx',index=False)
+    # sns.kdeplot(
+    #     x = 'x1' , y = 'JAN_tem',
+    #     data = df,
+    #     cmap = 'rocket',
+    #     # color = '#DC143C',
+    #     levels = 5,
+    #     # fill = True,
+    #     thresh=.2,
+    #     ax=ax,
+    # )
     plt.scatter(
         df.x1, df.JAN_tem,
         # data=df,
@@ -59,12 +62,12 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
         # alpha = 0.2,
         # ax=ax,
     )
-    x1_1 = list(x)
+    x1_1 = list(df.x1)
 
-    res = stats.linregress(x1_1, y)
+    res = stats.linregress(x1_1,df.JAN_tem)
     print(res)
     p = sns.regplot(x='x1', y='JAN_tem', data=df,ci=None,scatter=False,
-                label=f'y={res.slope:.2f}*x+{res.intercept:.2f} \n R\u00b2 ={abs(res.rvalue):.2f}',
+                label=f'y={res.slope:.2f}*x+{res.intercept:.2f} \n R\u00b2 ={res.rvalue**2:.2f}',
                 # locals = 'right',
                 ax=ax,
                 color = 'black'
@@ -87,9 +90,9 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
                  ax=ax,
                 color='b')
 
-    ax.set(xlim=(-1, 1),
-           # ylim=(-25,45)
-           )
+    # ax.set(xlim=(-1, 1),
+    #        # ylim=(-25,45)
+    #        )
 # f.subplots_adjust(0, 0, 1, 1, .08, .08)
 kdeplot_fig = f.get_figure()
 kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")))
