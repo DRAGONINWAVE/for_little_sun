@@ -21,7 +21,7 @@ start_time = time.time()
 #设置大的画图背景，为白色
 sns.set_theme(style='dark')
 f, axes = plt.subplots(3,4,
-                       figsize=(36,27),
+                       figsize=(60,45),
                        # sharex = True
                        )
 i = 4
@@ -37,8 +37,8 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     y = cleared_data1.iloc[:, -4].values  # 因变量
     x = cleared_data1.iloc[:, i].values
     df = pd.DataFrame(dict(x1 = x,JAN_tem=y))
-    # if ls[k] == 'NDVI':
-    #     df = df.drop(df[(df['x1']< 0)].index)
+    if ls[k] == 'NDVI':
+        df = df.drop(df[(df['x1']< 0)].index)
         # df.to_excel('NDVI'+season[l]+'.xlsx',index=False)
     # sns.kdeplot(
     #     x = 'x1' , y = 'JAN_tem',
@@ -67,21 +67,23 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     res = stats.linregress(x1_1,df.JAN_tem)
     print(res)
     p = sns.regplot(x='x1', y='JAN_tem', data=df,ci=None,scatter=False,
-                label=f'y={res.slope:.2f}*x+{res.intercept:.2f} \n R\u00b2 ={res.rvalue**2:.2f}',
+                label=f'y={res.slope:.2f}*x+{res.intercept:.2f} \n r\u00b2 ={res.rvalue**2:.2f} \n r = {res.rvalue:.2f}',
                 # locals = 'right',
                 ax=ax,
                 color = 'black'
                 )
-    plt.xlabel(season[l]+'_'+ls[k])
-    plt.ylabel(season[l]+'_'+ls[0].title()+'(°C)')
-    p.legend(loc = 'upper right')
+    ax.tick_params(axis='y', labelsize=30)
+    ax.tick_params(axis='x', labelsize=30)
+    plt.xlabel(season[l]+'_'+ls[k],fontsize = 30)
+    plt.ylabel(season[l]+'_'+ls[0].title()+'(°C)',fontsize = 30)
+    p.legend(loc = 'upper right',fontsize = 40)
     k = k + 1
     i = i + 1
     if k == 4:
       k = 1
       l = l + 1
       i = 4
-    p.legend()
+    # p.legend(loc = 'upper right',fontsize = 10)
     sns.rugplot(df.x1,
                 color="b",
                 ax=ax)
@@ -91,10 +93,10 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
                 color='b')
 
     # ax.set(xlim=(-1, 1),
-    #        # ylim=(-25,45)
+    # #        # ylim=(-25,45)
     #        )
-# f.subplots_adjust(0, 0, 1, 1, .08, .08)
+f.subplots_adjust(0.02,0.03,1,1,0.09,0.08)
 kdeplot_fig = f.get_figure()
-kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")))
+kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")),dpi = 200)
 end_time = time.time()
 print('cost_time',end_time-start_time,'s')
