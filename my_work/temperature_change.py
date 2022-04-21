@@ -43,7 +43,7 @@ for k in range(len(names)):
                 # print(df.year.values[counts])
                 if df.month[counts] in season1:
                     s1_T = s1_T + df.Tmean[counts]
-                    print(i,df.month[counts])
+                    # print(i,df.month[counts])
                     day1 = day1 + 1
                 if df.month[counts] in season2:
                     s2_T = s2_T + df.Tmean[counts]
@@ -61,6 +61,11 @@ for k in range(len(names)):
                 break
 
         if day != 0 and day1 != 0 and day2 != 0  and day3 != 0 and day4 != 0:
+            y_T = y_T / day
+            s1_T = s1_T / day1
+            s2_T = s2_T / day2
+            s3_T = s3_T / day3
+            s4_T = s4_T / day4
             average_T.append(y_T)
             average_s1_T.append(s1_T)
             average_s2_T.append(s2_T)
@@ -74,33 +79,30 @@ for k in range(len(names)):
 
     if k == 0:
         data0 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T))
-        print(len(data0))
+        # print(len(data0))
         data0.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[0],index=False)
 
     if k == 1:
         data1 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T))
         data1.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[1],index=False)
-        print(len(data1))
+        # print(len(data1))
 
     if k == 2:
         data2 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T))
         data2.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[2],index=False)
-        print(len(data2))
+        # print(len(data2))
 
     if k == 3:
         data3 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T))
         data3.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[3],index=False)
-        print(len(data3))
+        # print(len(data3))
 
     if k == 4:
         data4 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T))
         data4.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[4],index=False)
-        print(len(data4))
 
 
-    # print(name)
-    # sns.relplot(ls[i].Year, ls[i].Tmean,kind="line")
-    # plt.show()
-# print(data1,data2,data3,data4)
+
+print(data0)
 end_time = time.time()
 print(end_time-start_time,'s')
