@@ -101,8 +101,29 @@ for k in range(len(names)):
         data4 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T))
         data4.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[4],index=False)
 
+# counts = 0
+# counts0 = 0
+# counts2 = 0
+# Tmean1_collection = []
+# for y in range(1966,2017):
+#     Tmean1 = 0
+#     print(y,data1.Year[counts])
+#     if y == data1.Year[counts] and y == data3.Year[counts] and y == data4.Year[counts] and y == data0.Year[counts0] and y == data2.Year[counts2]:
+#         # print(counts)
+#         Tmean1 = data0.Tmean[counts0] + data1.Tmean[counts] + data2.Tmean[counts2] + data3.Tmean[counts] + data4.Tmean[counts]
+#         Tmean1 = Tmean1 / 4
+#         Tmean1_collection.append(Tmean1)
+#         counts = counts + 1
+#     if y != data0.Year[counts0]:
+#         counts0 = counts0 + 1
+#     if y != data2.Year[counts2]:
+#         counts2 = counts2 + 1
+#     if counts == len(data0):
+#         break
+#
+# print(Tmean1_collection)
 
 
-print(data0)
+print(len(data0),len(data1),len(data2),len(data3),len(data4))
 end_time = time.time()
 print(end_time-start_time,'s')
