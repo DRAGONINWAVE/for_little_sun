@@ -95,8 +95,3 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     # ax.set(xlim=(-1, 1),
     # #        # ylim=(-25,45)
     #        )
-f.subplots_adjust(0.02,0.03,1,1,0.09,0.08)
-kdeplot_fig = f.get_figure()
-kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")),dpi = 200)
-end_time = time.time()
-print('cost_time',end_time-start_time,'s')
