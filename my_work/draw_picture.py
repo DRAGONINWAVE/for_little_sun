@@ -70,8 +70,8 @@ for ax in axes1.flatten():
     plt.ylabel(u'温度'+u'（℃）',fontsize = 80)
     ax.set_title(data[k]+'.'+ls[k],
                       fontsize=160,
-                      # y=-0.15,
-                      # pad=0
+                      y=-0.22,
+                      pad=0
                       )
     # ax.arrow(0,12,0,1,length_includes_head= True)
 
@@ -81,7 +81,7 @@ for ax in axes1.flatten():
 # ax.tick_params( labelsize=80,tickdir='in', length=6, width=2, colors='black',
 #        grid_color='r', grid_alpha=1)
 # f.plots_adjust(*,*,*,*,*,0.09)
-f1.subplots_adjust(0.03,0.03,1,0.97,0.09,0.20)
+f1.subplots_adjust(0.03,0.07,1,1,0.09,0.27)
 kdeplot_fig = f1.get_figure()
 kdeplot_fig.savefig('T'+str(time.strftime("%Y%m%d%H%M%S")),dpi = 200)
 
@@ -136,8 +136,8 @@ for ax in axes2.flatten():
     plt.xlabel(u'年代',fontsize = 80)
     plt.ylabel(u'相对湿度'+u'（%）',fontsize = 80)
     ax.set_title(data[k1]+'.'+ls1[k1],fontsize=160,
-                        # y = -1.5,
-                        pad = 10
+                        y = -.215,
+                        # pad = 10
                       )
     # ax.arrow(0,12,0,1,length_includes_head= True)
 
@@ -147,7 +147,7 @@ for ax in axes2.flatten():
 # ax.tick_params( labelsize=80,tickdir='in', length=6, width=2, colors='black',
 #        grid_color='r', grid_alpha=1)
 # f.plots_adjust(*,*,*,*,*,0.09)
-f2.subplots_adjust(0.03,0.03,1,0.97,0.09,0.20)
+f2.subplots_adjust(0.03,0.07,1,1,0.09,0.27)
 kdeplot_fig = f2.get_figure()
 kdeplot_fig.savefig('RH' + str(time.strftime("%Y%m%d%H%M%S")),dpi = 200)
 
