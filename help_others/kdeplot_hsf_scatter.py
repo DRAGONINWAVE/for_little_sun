@@ -4,6 +4,7 @@ import pandas as pd
 import seaborn as sns
 from scipy import stats
 import time
+from matplotlib.ticker import MaxNLocator
 import os
 
 
@@ -30,6 +31,7 @@ l = 0
 for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     # print(ax)
     plt.sca(ax)
+    plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
     cmaps = sns.cubehelix_palette(start=s,light=1,as_cmap=True)
     season = ['Spring','Summer','Fall','Winter']
     cleared_data1 = pd.read_excel('D:\\TD\\help_others\\hsf_kdeplot\\'+season[l]+'.xlsx')
@@ -67,16 +69,16 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     res = stats.linregress(x1_1,df.JAN_tem)
     print(res)
     p = sns.regplot(x='x1', y='JAN_tem', data=df,ci=None,scatter=False,
-                label=f'y={res.slope:.2f}*x+{res.intercept:.2f} \n r\u00b2 ={res.rvalue**2:.2f} \n r = {res.rvalue:.2f}',
+                label=f'y={res.slope:.2f}x+{res.intercept:.2f} \n r = {res.rvalue:.2f} \n p = {res.pvalue:.2f}', #\n r\u00b2 ={res.rvalue**2:.2f}
                 # locals = 'right',
                 ax=ax,
                 color = 'black'
                 )
-    ax.tick_params(axis='y', labelsize=30)
-    ax.tick_params(axis='x', labelsize=30)
-    plt.xlabel(season[l]+'_'+ls[k],fontsize = 30)
-    plt.ylabel(season[l]+'_'+ls[0].title()+'(°C)',fontsize = 30)
-    p.legend(loc = 'upper right',fontsize = 40)
+    ax.tick_params(axis='y', labelsize=50)
+    ax.tick_params(axis='x', labelsize=50)
+    plt.xlabel(season[l]+'_'+ls[k],fontsize = 70)
+    plt.ylabel(season[l]+'_'+ls[0].title()+'(°C)',fontsize = 70)
+    p.legend(loc = 'upper right',fontsize = 50)
     k = k + 1
     i = i + 1
     if k == 4:
@@ -95,3 +97,10 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     # ax.set(xlim=(-1, 1),
     # #        # ylim=(-25,45)
     #        )
+
+# ax.set(xlim=(-1, 1),ylim=(-25,45))
+f.subplots_adjust(0.035, 0.04, 1, 0.99, .14, .14)
+kdeplot_fig = f.get_figure()
+kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")))
+end_time = time.time()
+print('cost_time',end_time-start_time,'s')
