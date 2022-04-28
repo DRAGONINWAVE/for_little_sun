@@ -40,7 +40,7 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     x = cleared_data1.iloc[:, i].values
     df = pd.DataFrame(dict(x1 = x,JAN_tem=y))
     if ls[k] == 'NDVI':
-        df = df.drop(df[(df['x1']< 0)].index)
+        df = df.drop(df[(df['x1']< 0.2)].index)  #0.00
         # df.to_excel('NDVI'+season[l]+'.xlsx',index=False)
     # sns.kdeplot(
     #     x = 'x1' , y = 'JAN_tem',
@@ -99,7 +99,7 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     #        )
 
 # ax.set(xlim=(-1, 1),ylim=(-25,45))
-f.subplots_adjust(0.035, 0.04, 1, 0.99, .14, .14)
+f.subplots_adjust(0.035, 0.04, 0.99, 0.99, .14, .14)
 kdeplot_fig = f.get_figure()
 kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")))
 end_time = time.time()
