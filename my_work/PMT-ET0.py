@@ -70,4 +70,4 @@ for name in names:
     ET0_PMT_CF = (0.408*df_raw.delta*df_raw.Rs_CF + (df_raw.gamal*900/(df_raw.Tmean+273))*2*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*2))
     df_raw.insert(df_raw.shape[1],'ET0_PMT_G',ET0_PMT_G)
     df_raw.insert(df_raw.shape[1],'ET0_PMT_CF',ET0_PMT_CF)
-    df_raw.to_excel(name,index=False)
+    df_raw.to_excel('D:\TD\my_work\\actual_data\\' + name,index=False)
