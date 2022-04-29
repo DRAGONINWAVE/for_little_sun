@@ -15,18 +15,18 @@ for name in names:
     k = 0
     for AI in df_raw.AI:
         if AI >= 1.00:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmean.values[k] - 2)/(df_raw.Tmean.values[k] - 2 + 237.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmean.values[k] - 2)/(df_raw.Tmean.values[k] - 2 + 273.3))))
         if 0.65<=AI<1:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 0)/(df_raw.Tmin.values[k] - 0 + 237.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 0)/(df_raw.Tmin.values[k] - 0 + 273.3))))
         if 0.20<=AI<0.65:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 1)/(df_raw.Tmin.values[k] - 1 + 237.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 1)/(df_raw.Tmin.values[k] - 1 + 273.3))))
         if 0.05<=AI<0.20:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 2)/(df_raw.Tmin.values[k] - 2 + 237.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 2)/(df_raw.Tmin.values[k] - 2 + 273.3))))
         if AI<0.05:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 4)/(df_raw.Tmin.values[k] - 4 + 237.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 4)/(df_raw.Tmin.values[k] - 4 + 273.3))))
         k = k + 1
     # print(len(Tdew))
-    es = (0.611*np.exp(17.27*df_raw.Tmin/(df_raw.Tmin+237.3))+0.611*np.exp(17.27*df_raw.Tmax/(df_raw.Tmax+237.3)))/2
+    es = (0.611*np.exp(17.27*df_raw.Tmin/(df_raw.Tmin+273.3))+0.611*np.exp(17.27*df_raw.Tmax/(df_raw.Tmax+273.3)))/2
     # print(type(ea),type(es))
 
     df_raw.insert(df_raw.shape[1],'ea',ea)
@@ -60,5 +60,7 @@ for name in names:
     df_raw.insert(df_raw.shape[1],'delta',delta)
     # print(df_raw)
     ET0_PMT_G = (0.408*df_raw.delta*df_raw.Rs_G + (df_raw.gamal*900/(df_raw.Tmean+273))*2*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*2))
+    ET0_PMT_CF = (0.408*df_raw.delta*df_raw.Rs_CF + (df_raw.gamal*900/(df_raw.Tmean+273))*2*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*2))
     df_raw.insert(df_raw.shape[1],'ET0_PMT_G',ET0_PMT_G)
+    df_raw.insert(df_raw.shape[1],'ET0_PMT_CF',ET0_PMT_CF)
     df_raw.to_excel(name,index=False)
