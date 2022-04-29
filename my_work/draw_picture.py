@@ -45,7 +45,7 @@ for ax in axes1.flatten():
         lw = 3
                  )
     res = stats.linregress(list(df.Year),y)
-    print(res.pvalue)
+    print(res)
     p = sns.regplot(x='Year', y=s, data=df,ci=None,scatter=False,
                 label=f'y={res.slope:.2f}x{res.intercept:.2f} \n R\u00b2 ={res.rvalue**2:.2f}',
                     # ,\n r = {res.rvalue:.2f}',
@@ -81,7 +81,7 @@ for ax in axes1.flatten():
 # ax.tick_params( labelsize=80,tickdir='in', length=6, width=2, colors='black',
 #        grid_color='r', grid_alpha=1)
 # f.plots_adjust(*,*,*,*,*,0.09)
-f1.subplots_adjust(0.03,0.07,1,1,0.09,0.27)
+f1.subplots_adjust(0.03,0.07,1,0.99,0.09,0.27)
 kdeplot_fig = f1.get_figure()
 kdeplot_fig.savefig('T'+str(time.strftime("%Y%m%d%H%M%S")),dpi = 200)
 
@@ -147,7 +147,7 @@ for ax in axes2.flatten():
 # ax.tick_params( labelsize=80,tickdir='in', length=6, width=2, colors='black',
 #        grid_color='r', grid_alpha=1)
 # f.plots_adjust(*,*,*,*,*,0.09)
-f2.subplots_adjust(0.03,0.07,1,1,0.09,0.27)
+f2.subplots_adjust(0.03,0.07,1,0.99,0.09,0.27)
 kdeplot_fig = f2.get_figure()
 kdeplot_fig.savefig('RH' + str(time.strftime("%Y%m%d%H%M%S")),dpi = 200)
 

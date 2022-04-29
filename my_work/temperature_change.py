@@ -32,7 +32,7 @@ for k in range(len(names)):
     average_s3_RH = []
     average_s4_RH = []
     # print(len(df.year))
-    for i in range(1966,2017):
+    for i in range(1967,2017):
         y_T = 0
         y_RH = 0
         day = 0
