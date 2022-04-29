@@ -31,7 +31,7 @@ for ax in axes1.flatten():
     plt.sca(ax)
     plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
-    print(s)
+    # print(s)
     y = df.iloc[:,i].values
     sns.lineplot(
         data=df,
@@ -45,7 +45,7 @@ for ax in axes1.flatten():
         lw = 3
                  )
     res = stats.linregress(list(df.Year),y)
-    print(res)
+    print(res.pvalue)
     p = sns.regplot(x='Year', y=s, data=df,ci=None,scatter=False,
                 label=f'y={res.slope:.2f}x{res.intercept:.2f} \n R\u00b2 ={res.rvalue**2:.2f}',
                     # ,\n r = {res.rvalue:.2f}',
@@ -97,11 +97,11 @@ for ax in axes2.flatten():
     s = df.columns[i]
     ls1 = ['相对湿度变化趋势','相对湿度距平变化趋势','第一季度','第二季度','第三季度','第四季度']
     data=['a','b','c','d','e','f']
-    print(ls1[k1])
+    # print(ls1[k1])
     plt.sca(ax)
     plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
-    print(s)
+    # print(s)
     y = df.iloc[:,i].values
     sns.lineplot(
         data=df,
@@ -115,7 +115,7 @@ for ax in axes2.flatten():
         lw = 3
                  )
     res = stats.linregress(list(df.Year),y)
-    print(res)
+    print(res.pvalue)
     p = sns.regplot(x='Year', y=s, data=df,ci=None,scatter=False,
                 label=f'y={res.slope:.2f}x+{res.intercept:.2f} \n R\u00b2 ={res.rvalue**2:.2f}',
                     # ,\n r = {res.rvalue:.2f}',
