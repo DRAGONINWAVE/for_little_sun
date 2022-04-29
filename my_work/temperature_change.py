@@ -44,6 +44,10 @@ for k in range(len(names)):
         season2 = list(range(4,7))
         season3 = list(range(7,10))
         season4 = list(range(10,13))
+        S1 = list(range(3,6))
+        S2 = list(range(6,9))
+        S3 = list(range(9,12))
+        S4 = list(range(12,3))
         for days in range(1,31*12):
             # print(df.year[counts],i)
             if i == df.year[counts]:
