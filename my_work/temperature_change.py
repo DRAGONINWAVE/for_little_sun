@@ -11,6 +11,7 @@ names  = os.listdir(path)
 for k in range(len(names)):
     df = pd.read_excel(path+names[k])
     # print(k)
+    print(df)
     counts = 0
     s1_T = 0
     s2_T = 0
@@ -20,6 +21,10 @@ for k in range(len(names)):
     s2_RH = 0
     s3_RH = 0
     s4_RH = 0
+    s1_ET0 = 0
+    s2_ET0 = 0
+    s3_ET0 = 0
+    s4_ET0 = 0
     year = []
     average_T = []
     average_s1_T = []
@@ -31,10 +36,20 @@ for k in range(len(names)):
     average_s2_RH = []
     average_s3_RH = []
     average_s4_RH = []
+    average_ET0 = []
+    average_s1_ET0 = []
+    average_s2_ET0 = []
+    average_s3_ET0 = []
+    average_s4_ET0 = []
+    average_ET0_PMT_G = []
+    average_ET0_PMT_CF = []
     # print(len(df.year))
     for i in range(1967,2017):
         y_T = 0
         y_RH = 0
+        y_ET0 = 0
+        y_ET0_PMT_G = 0
+        y_ET0_PMT_CF =  0
         day = 0
         day1 = 0
         day2 = 0
@@ -44,10 +59,14 @@ for k in range(len(names)):
         season2 = list(range(4,7))
         season3 = list(range(7,10))
         season4 = list(range(10,13))
+        day5 = 0
+        day6 = 0
+        day7 = 0
+        day8 = 0
         S1 = list(range(3,6))
         S2 = list(range(6,9))
         S3 = list(range(9,12))
-        S4 = list(range(12,3))
+        S4 = [1,2,12]
         for days in range(1,31*12):
             # print(df.year[counts],i)
             if i == df.year[counts]:
@@ -55,6 +74,9 @@ for k in range(len(names)):
                 # print(df.year.values[counts])
                 y_T = y_T + df.Tmean[counts]
                 y_RH = y_RH + df.RH[counts]
+                y_ET0 = y_ET0 + df.ET0_PMT[counts]
+                y_ET0_PMT_G = y_ET0_PMT_G + df.ET0_PMT_G[counts]
+                y_ET0_PMT_CF = y_ET0_PMT_CF + df.ET0_PMT_CF[counts]
                 # print(df.year.values[counts])
                 if df.month[counts] in season1:
                     s1_T = s1_T + df.Tmean[counts]
@@ -73,13 +95,25 @@ for k in range(len(names)):
                     s4_T = s4_T + df.Tmean[counts]
                     s4_RH = s4_RH + df.RH[counts]
                     day4 = day4 + 1
+                if df.month[counts] in S1:
+                    s1_ET0 = s1_ET0 + df.ET0_PMT[counts]
+                    day5 = day5 + 1
+                if df.month[counts] in S2:
+                    s2_ET0 = s2_ET0 + df.ET0_PMT[counts]
+                    day6 = day6 + 1
+                if df.month[counts] in S3:
+                    s3_ET0 = s3_ET0 + df.ET0_PMT[counts]
+                    day7 = day7 + 1
+                if df.month[counts] in S4:
+                    s4_ET0 = s4_ET0 + df.ET0_PMT[counts]
+                    day8 = day8 + 1
                 day = day + 1
                 counts = counts + 1
             # print(day)
             if counts == len(df.year):
                 break
 
-        if day != 0 and day1 != 0 and day2 != 0  and day3 != 0 and day4 != 0:
+        if day != 0 and day1 != 0 and day2 != 0  and day3 != 0 and day4 != 0 and day5 != 0 and day6 != 0 and day7 !=0 and day8 !=0 :
             y_T = y_T / day
             s1_T = s1_T / day1
             s2_T = s2_T / day2
@@ -90,6 +124,16 @@ for k in range(len(names)):
             s2_RH = s2_RH / day2
             s3_RH = s3_RH / day3
             s4_RH = s4_RH / day4
+            y_RH = y_RH / day
+            s1_RH = s1_RH / day1
+            s2_RH = s2_RH / day2
+            s3_RH = s3_RH / day3
+            s4_RH = s4_RH / day4
+            y_ET0 = y_ET0 / day
+            s1_ET0 = s1_ET0 / day5
+            s2_ET0 = s2_ET0 / day6
+            s3_ET0 = s3_ET0 / day7
+            s4_ET0= s4_ET0 / day8
             average_T.append(y_T)
             average_s1_T.append(s1_T)
             average_s2_T.append(s2_T)
@@ -100,6 +144,13 @@ for k in range(len(names)):
             average_s2_RH.append(s2_RH)
             average_s3_RH.append(s3_RH)
             average_s4_RH.append(s4_RH)
+            average_ET0.append(y_ET0)
+            average_s1_ET0.append(s1_ET0)
+            average_s2_ET0.append(s2_ET0)
+            average_s3_ET0.append(s3_ET0)
+            average_s4_ET0.append(s4_ET0)
+            average_ET0_PMT_G.append(y_ET0_PMT_G)
+            average_ET0_PMT_CF.append(y_ET0_PMT_CF)
             year.append(df.year.values[counts-1])
             # print(year)
             # print(average_T)
@@ -108,15 +159,18 @@ for k in range(len(names)):
 
     if k == 0:
         data0 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
-                                  RHmean = average_RH,s1_RH = average_s1_RH,s2_RH=average_s2_RH,s3_RH = average_s3_RH,s4_RH = average_s4_RH
+                                  RHmean = average_RH,s1_RH = average_s1_RH,s2_RH=average_s2_RH,s3_RH = average_s3_RH,s4_RH = average_s4_RH,
+                                  ETOmean = average_ET0,s1_ET0 = average_s1_RH,s2_ET0=average_s2_RH,s3_ET0 = average_s3_RH,s4_ET0 = average_s4_RH,
+                                  ET0_PMT_G = average_ET0_PMT_G,ET0_ET0_PMT_CF = average_ET0_PMT_CF
                                   ))
         # print(len(data0))
         data0.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[0],index=False)
 
     if k == 1:
         data1 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
-                                  RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,
-                                  s4_RH=average_s4_RH
+                                  RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,s4_RH=average_s4_RH,
+                                  ETOmean=average_ET0, s1_ET0=average_s1_RH, s2_ET0=average_s2_RH, s3_ET0=average_s3_RH,
+                                  s4_ET0=average_s4_RH,ET0_PMT_G = average_ET0_PMT_G,ET0_ET0_PMT_CF = average_ET0_PMT_CF
                                   ))
         data1.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[1],index=False)
         # print(len(data1))
@@ -124,15 +178,17 @@ for k in range(len(names)):
     if k == 2:
         data2 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
                                   RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,
-                                  s4_RH=average_s4_RH
-                                  ))
+                                  s4_RH=average_s4_RH,ETOmean = average_ET0,s1_ET0 = average_s1_RH,s2_ET0=average_s2_RH,s3_ET0 = average_s3_RH,s4_ET0 = average_s4_RH,
+                                  ET0_PMT_G = average_ET0_PMT_G,ET0_ET0_PMT_CF = average_ET0_PMT_CF))
         data2.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[2],index=False)
         # print(len(data2))
 
     if k == 3:
         data3 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
                                   RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,
-                                  s4_RH=average_s4_RH
+                                  s4_RH=average_s4_RH,
+        ETOmean = average_ET0, s1_ET0 = average_s1_RH, s2_ET0 = average_s2_RH, s3_ET0 = average_s3_RH, s4_ET0 = average_s4_RH,
+                                  ET0_PMT_G=average_ET0_PMT_G, ET0_ET0_PMT_CF=average_ET0_PMT_CF
                                   ))
         data3.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[3],index=False)
         # print(len(data3))
@@ -140,7 +196,9 @@ for k in range(len(names)):
     if k == 4:
         data4 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
                                   RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,
-                                  s4_RH=average_s4_RH
+                                  s4_RH=average_s4_RH,
+        ETOmean = average_ET0, s1_ET0 = average_s1_RH, s2_ET0 = average_s2_RH, s3_ET0 = average_s3_RH, s4_ET0 = average_s4_RH,
+                                  ET0_PMT_G=average_ET0_PMT_G, ET0_ET0_PMT_CF=average_ET0_PMT_CF
                                   ))
         data4.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[4],index=False)
 
