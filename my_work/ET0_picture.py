@@ -19,11 +19,12 @@ df = pd.read_excel(path + 'all.xlsx')
 k = 0
 for i in range(13,21):
     sns.set_theme(style='white')
-    f1 = plt.figure(figsize=(80,70),
+    f1 = plt.figure(figsize=(40,24),
                           # sharex= True,
                     )
     plt.rcParams['font.sans-serif']=['SimSun'] #用来正常显示中文标签
     # plt.rcParams['axes.unicode_minus'] = False #用来正常显示负号
+
     s = df.columns[i]
     sns.lineplot(data = df,
                  x = 'Year', y = s,
@@ -70,7 +71,7 @@ for i in range(13,21):
     # ax.tick_params( labelsize=80,tickdir='in', length=6, width=2, colors='black',
     #        grid_color='r', grid_alpha=1)
     # f.plots_adjust(*,*,*,*,*,0.09)
-    f1.subplots_adjust(0.05,0.05,1,0.99,0.09,0.27)
+    f1.subplots_adjust(0.1,0.1,1,0.99,0.09,0.27)
     kdeplot_fig = f1.get_figure()
     kdeplot_fig.savefig('D:\TD\my_work\data1\\' + s + str(time.strftime("%Y%m%d%H%M%S")),dpi = 200)
 
