@@ -36,16 +36,28 @@ for i in range(13,21):
     y = df.iloc[:,i].values
     res = stats.linregress(list(df.Year), y)
     # print(res)
-    p = sns.regplot(x='Year', y=s, data=df, ci=None, scatter=False,
-                    label=f' y = {res.slope:.2f}x{res.intercept:.2f} \n R\u00b2= {res.rvalue ** 2:.2f}  \n P = {res.pvalue:.2f}',
-                    # ,\n r = {res.rvalue:.2f}',
+    if i == 15:
+        p = sns.regplot(x='Year', y=s, data=df, ci=None, scatter=False,
+                        label=f' y = {res.slope:.4f}x+{res.intercept:.2f} \n R\u00b2= {res.rvalue ** 2:.2f}  \n P = {res.pvalue:.2f}',
+                        # ,\n r = {res.rvalue:.2f}',
 
-                    # locals = 'right',
-                    # ax=ax,
-                    color='black',
-                    # ls='-'
-                    # lw = 10,
-                    )
+                        # locals = 'right',
+                        # ax=ax,
+                        color='black',
+                        # ls='-'
+                        # lw = 10,
+                        )
+    else:
+        p = sns.regplot(x='Year', y=s, data=df, ci=None, scatter=False,
+                        label=f' y = {res.slope:.4f}x{res.intercept:.2f} \n R\u00b2= {res.rvalue ** 2:.2f}  \n P = {res.pvalue:.2f}',
+                        # ,\n r = {res.rvalue:.2f}',
+
+                        # locals = 'right',
+                        # ax=ax,
+                        color='black',
+                        # ls='-'
+                        # lw = 10,
+                        )
     font1 = {'family': 'Times New Roman', 'size': 80}
     p.legend(loc='upper right', fontsize=80, prop=font1)
 
