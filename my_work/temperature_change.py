@@ -89,23 +89,23 @@ for k in range(len(names)):
                 if df.month[counts] in season1:
                     s1_T = s1_T + df.Tmean[counts]
                     s1_RH = s1_RH + df.RH[counts]
-                    s11_ET0 = s11_ET0 + df.ET0[counts]
+                    s11_ET0 = s11_ET0 + df.ET0_PMT[counts]
                     # print(i,df.month[counts])
                     day1 = day1 + 1
                 if df.month[counts] in season2:
                     s2_T = s2_T + df.Tmean[counts]
                     s2_RH = s2_RH + df.RH[counts]
-                    s22_ET0 = s22_ET0 + df.ET0[counts]
+                    s22_ET0 = s22_ET0 + df.ET0_PMT[counts]
                     day2 = day2 + 1
                 if df.month[counts] in season3:
                     s3_T = s3_T + df.Tmean[counts]
                     s3_RH = s3_RH + df.RH[counts]
-                    s33_ET0 = s33_ET0 + df.ET0[counts]
+                    s33_ET0 = s33_ET0 + df.ET0_PMT[counts]
                     day3 = day3 + 1
                 if df.month[counts] in season4:
                     s4_T = s4_T + df.Tmean[counts]
                     s4_RH = s4_RH + df.RH[counts]
-                    s44_ET0 = s44_ET0 + df.ET0[counts]
+                    s44_ET0 = s44_ET0 + df.ET0_PMT[counts]
                     day4 = day4 + 1
                 if df.month[counts] in S1:
                     s1_ET0 = s1_ET0 + df.ET0_PMT[counts]
