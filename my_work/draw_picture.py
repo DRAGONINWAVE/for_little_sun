@@ -45,7 +45,7 @@ for ax in axes1.flatten():
         lw = 3
                  )
     res = stats.linregress(list(df.Year),y)
-    print(res)
+    # print(res)
     p = sns.regplot(x='Year', y=s, data=df,ci=None,scatter=False,
                 label=f' y = {res.slope:.2f}x{res.intercept:.2f} \n R\u00b2= {res.rvalue**2:.2f}  \n P = {res.pvalue:.2f}',
                     # ,\n r = {res.rvalue:.2f}',
@@ -115,7 +115,7 @@ for ax in axes2.flatten():
         lw = 3
                  )
     res = stats.linregress(list(df.Year),y)
-    print(res.pvalue)
+    # print(res.pvalue)
     p = sns.regplot(x='Year', y=s, data=df,ci=None,scatter=False,
                 label=f' y = {res.slope:.2f}x+{res.intercept:.2f} \n R\u00b2= {res.rvalue**2:.2f} \n P = {res.pvalue:.2f}',
                     # ,\n r = {res.rvalue:.2f}',
