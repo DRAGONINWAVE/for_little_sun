@@ -9,7 +9,7 @@ for Filename in os.listdir(filepath):
     # print(Filename)
     File = pd.read_excel('D:\TD\my_work\data\\'+ Filename)
     names = File.columns.values
-    print(Filename)
+    # print(Filename)
     # print(names)
     # lRs = []
     # lS = []
@@ -73,7 +73,8 @@ for Filename in os.listdir(filepath):
                   # 'RSmonth_mean':lRs,'Smonth_mean':lS,'Nmonth_mean':lN
                   }
     # print(len(month),len(lRs),len(lS),len(lN))
-    year_sum = {'年':year,'y_ET0':mET0,
+    year_sum = {'年':year,
+                'y_ET0':mET0,
                 # 'y_S':lyS,'y_N':lyN
                 }
     # print(year_sum)
@@ -81,5 +82,5 @@ for Filename in os.listdir(filepath):
     MM.to_excel('D:\TD\my_work\\'+Filename.split('.')[0]+'月平均.xlsx',index=False)
     YM = pd.DataFrame(data=year_sum)
     YM.to_excel('D:\TD\my_work\\'+Filename.split('.')[0]+'年总和.xlsx',index=False)
-    print(counts)
+    # print(counts)
     # counts = 0
