@@ -17,13 +17,13 @@ df = pd.read_excel(path + 'all.xlsx')
 # print(df)
 # i = 1
 k = 0
-for i in range(13,21):
+for i in range(13,25):
     sns.set_theme(style='white')
     f1 = plt.figure(figsize=(40,24),
                           # sharex= True,
                     )
     plt.rcParams['font.sans-serif']=['SimSun'] #用来正常显示中文标签
-    # plt.rcParams['axes.unicode_minus'] = False #用来正常显示负号
+    plt.rcParams['axes.unicode_minus'] = False #用来正常显示负号
 
     s = df.columns[i]
     sns.lineplot(data = df,
@@ -36,7 +36,7 @@ for i in range(13,21):
     y = df.iloc[:,i].values
     res = stats.linregress(list(df.Year), y)
     # print(res)
-    if i == 15:
+    if i == 15 or i == 21:
         p = sns.regplot(x='Year', y=s, data=df, ci=None, scatter=False,
                         label=f' y = {res.slope:.4f}x+{res.intercept:.2f} \n R\u00b2= {res.rvalue ** 2:.2f}  \n P = {res.pvalue:.2f}',
                         # ,\n r = {res.rvalue:.2f}',
