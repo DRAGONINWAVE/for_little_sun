@@ -134,6 +134,8 @@ for k in range(len(names)):
             s2_ET0 = s2_ET0 / day6
             s3_ET0 = s3_ET0 / day7
             s4_ET0= s4_ET0 / day8
+            y_ET0_PMT_G = y_ET0_PMT_G / day
+            y_ET0_PMT_CF = y_ET0_PMT_CF / day
             average_T.append(y_T)
             average_s1_T.append(s1_T)
             average_s2_T.append(s2_T)
@@ -160,7 +162,7 @@ for k in range(len(names)):
     if k == 0:
         data0 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
                                   RHmean = average_RH,s1_RH = average_s1_RH,s2_RH=average_s2_RH,s3_RH = average_s3_RH,s4_RH = average_s4_RH,
-                                  ETOmean = average_ET0,s1_ET0 = average_s1_RH,s2_ET0=average_s2_RH,s3_ET0 = average_s3_RH,s4_ET0 = average_s4_RH,
+                                  ETOmean = average_ET0,s1_ET0 = average_s1_ET0,s2_ET0=average_s2_ET0,s3_ET0 = average_s3_ET0,s4_ET0 = average_s4_ET0,
                                   ET0_PMT_G = average_ET0_PMT_G,ET0_ET0_PMT_CF = average_ET0_PMT_CF
                                   ))
         # print(len(data0))
@@ -169,8 +171,9 @@ for k in range(len(names)):
     if k == 1:
         data1 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
                                   RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,s4_RH=average_s4_RH,
-                                  ETOmean=average_ET0, s1_ET0=average_s1_RH, s2_ET0=average_s2_RH, s3_ET0=average_s3_RH,
-                                  s4_ET0=average_s4_RH,ET0_PMT_G = average_ET0_PMT_G,ET0_ET0_PMT_CF = average_ET0_PMT_CF
+                                  ETOmean=average_ET0, s1_ET0=average_s1_ET0, s2_ET0=average_s2_ET0,
+                                  s3_ET0=average_s3_ET0, s4_ET0=average_s4_ET0,
+                                  ET0_PMT_G=average_ET0_PMT_G, ET0_ET0_PMT_CF=average_ET0_PMT_CF
                                   ))
         data1.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[1],index=False)
         # print(len(data1))
@@ -178,8 +181,9 @@ for k in range(len(names)):
     if k == 2:
         data2 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
                                   RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,
-                                  s4_RH=average_s4_RH,ETOmean = average_ET0,s1_ET0 = average_s1_RH,s2_ET0=average_s2_RH,s3_ET0 = average_s3_RH,s4_ET0 = average_s4_RH,
-                                  ET0_PMT_G = average_ET0_PMT_G,ET0_ET0_PMT_CF = average_ET0_PMT_CF))
+                                  ETOmean=average_ET0, s1_ET0=average_s1_ET0, s2_ET0=average_s2_ET0,
+                                  s3_ET0=average_s3_ET0, s4_ET0=average_s4_ET0,
+                                  ET0_PMT_G=average_ET0_PMT_G, ET0_ET0_PMT_CF=average_ET0_PMT_CF))
         data2.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[2],index=False)
         # print(len(data2))
 
@@ -187,7 +191,8 @@ for k in range(len(names)):
         data3 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
                                   RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,
                                   s4_RH=average_s4_RH,
-        ETOmean = average_ET0, s1_ET0 = average_s1_RH, s2_ET0 = average_s2_RH, s3_ET0 = average_s3_RH, s4_ET0 = average_s4_RH,
+                                  ETOmean=average_ET0, s1_ET0=average_s1_ET0, s2_ET0=average_s2_ET0,
+                                  s3_ET0=average_s3_ET0, s4_ET0=average_s4_ET0,
                                   ET0_PMT_G=average_ET0_PMT_G, ET0_ET0_PMT_CF=average_ET0_PMT_CF
                                   ))
         data3.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[3],index=False)
@@ -197,7 +202,8 @@ for k in range(len(names)):
         data4 = pd.DataFrame(dict(Year=year,Tmean=average_T,S1=average_s1_T,S2=average_s2_T,S3=average_s3_T,S4=average_s4_T,
                                   RHmean=average_RH, s1_RH=average_s1_RH, s2_RH=average_s2_RH, s3_RH=average_s3_RH,
                                   s4_RH=average_s4_RH,
-        ETOmean = average_ET0, s1_ET0 = average_s1_RH, s2_ET0 = average_s2_RH, s3_ET0 = average_s3_RH, s4_ET0 = average_s4_RH,
+                                  ETOmean=average_ET0, s1_ET0=average_s1_ET0, s2_ET0=average_s2_ET0,
+                                  s3_ET0=average_s3_ET0, s4_ET0=average_s4_ET0,
                                   ET0_PMT_G=average_ET0_PMT_G, ET0_ET0_PMT_CF=average_ET0_PMT_CF
                                   ))
         data4.to_excel('D:\TD\my_work\data1\\' + 'YearMean'+names[4],index=False)
