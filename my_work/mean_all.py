@@ -1,12 +1,12 @@
 import pandas as pd
 import os
 
-from my_work.temperature_change import y_ET0
+# from my_work.temperature_change import y_ET0
 
 filepath = r'D:\TD\my_work\data'
 # print(len(os.listdir(filepath)))
 for Filename in os.listdir(filepath):
-    # print(Filename)
+    print(Filename)
     File = pd.read_excel('D:\TD\my_work\data\\'+ Filename)
     names = File.columns.values
     # print(Filename)
@@ -50,37 +50,40 @@ for Filename in os.listdir(filepath):
                     else:
                         break
                 if day != 0:
-                #     RSmonth_mean = m_Rs / day
-                #     Smonth_mean = m_S / day
-                #     Nmonth_mean = m_N / day
+                    #     RSmonth_mean = m_Rs / day
+                    #     Smonth_mean = m_S / day
+                    #     Nmonth_mean = m_N / day
                     ET0_mean = m_ET0 / day
-                #     y_Rs = y_Rs + RSmonth_mean
-                #     y_S = y_S + Smonth_mean
-                #     y_N = y_N + Nmonth_mean
+                    #     y_Rs = y_Rs + RSmonth_mean
+                    #     y_S = y_S + Smonth_mean
+                    #     y_N = y_N + Nmonth_mean
                     y_ET0 = y_ET0 + ET0_mean
-                #     lRs.append(RSmonth_mean)
-                #     lS.append(Smonth_mean)
-                #     lN.append(Nmonth_mean)
+                    #     lRs.append(RSmonth_mean)
+                    #     lS.append(Smonth_mean)
+                    #     lN.append(Nmonth_mean)
                     mET0.append(ET0_mean)
                 # lyRs.append(y_Rs)
                 # lyS.append(y_S)
                 # lyN.append(y_N)
-                yET0.append(y_ET0)
+            yET0.append(y_ET0)
     month = list(range(1,13))*40
     year = list(range(1967,2017))
-    month_mean = {'月':month,
+    month_mean = {
+                  # '月':month,
                   'ET0mean':yET0
                   # 'RSmonth_mean':lRs,'Smonth_mean':lS,'Nmonth_mean':lN
                   }
     # print(len(month),len(lRs),len(lS),len(lN))
-    year_sum = {'年':year,
+    year_sum = {
+                # '年':year,
                 'y_ET0':mET0,
                 # 'y_S':lyS,'y_N':lyN
                 }
-    # print(year_sum)
+    print(len(mET0))
+    print(len(yET0))
     MM = pd.DataFrame(data=month_mean)
-    MM.to_excel('D:\TD\my_work\\'+Filename.split('.')[0]+'月平均.xlsx',index=False)
+    MM.to_excel('D:\TD\my_work\月和年\\'+Filename.split('.')[0]+'月平均.xlsx',index=False)
     YM = pd.DataFrame(data=year_sum)
-    YM.to_excel('D:\TD\my_work\\'+Filename.split('.')[0]+'年总和.xlsx',index=False)
+    YM.to_excel('D:\TD\my_work\月和年\\'+Filename.split('.')[0]+'年总和.xlsx',index=False)
     # print(counts)
     # counts = 0
