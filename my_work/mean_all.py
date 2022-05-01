@@ -39,6 +39,7 @@ for Filename in os.listdir(filepath):
                 for days in range(1,32):
                     # print(str(File.date[counts]).split('-')[1])
                     if month == int(str(File.month[counts])):
+                        # print(counts)
                         # print((str(File.date[counts]).split('-')[:]))
                         # m_Rs = m_Rs + File.RS[counts]
                         # # print(m_Rs)
@@ -70,13 +71,13 @@ for Filename in os.listdir(filepath):
     year = list(range(1967,2017))
     month_mean = {
                   # '月':month,
-                  'ET0mean':yET0
+                  'ET0mean':mET0
                   # 'RSmonth_mean':lRs,'Smonth_mean':lS,'Nmonth_mean':lN
                   }
     # print(len(month),len(lRs),len(lS),len(lN))
     year_sum = {
                 # '年':year,
-                'y_ET0':mET0,
+                'y_ET0':yET0,
                 # 'y_S':lyS,'y_N':lyN
                 }
     print(len(mET0))
