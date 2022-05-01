@@ -56,7 +56,7 @@ for name in names:
             kRs_CF = (float(0.2169 - 0.0042*np.average(df_raw.Tmax.values - df_raw.Tmin.values) + 0.0352*np.average(df_raw.wind.values) - 0.0011*np.average(df_raw.RH.values)))
         # j = j + 1
     # df_raw.insert(df_raw.shape[1],'kRs_CF',kRs_CF)
-    print(kRs_CF,np.average(df_raw.wind.values))
+    print(kRs_CF,np.average(df_raw.wind.values),np.average(df_raw.AI.values))
     Rs_G = kRs_G*(df_raw.Tmax-df_raw.Tmin)**0.5*df_raw.Ra
     Rs_CF = kRs_CF*(df_raw.Tmax-df_raw.Tmin)**0.5*df_raw.Ra
     df_raw.insert(df_raw.shape[1],'Rs_G',Rs_G)
