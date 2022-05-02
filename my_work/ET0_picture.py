@@ -36,9 +36,9 @@ for i in range(13,25):
     y = df.iloc[:,i].values
     res = stats.linregress(list(df.Year), y)
     # print(res)
-    if i == 15 or i == 21:
+    if i == 15 or i == 22:
         p = sns.regplot(x='Year', y=s, data=df, ci=None, scatter=False,
-                        label=f' y = {res.slope:.4f}x+{res.intercept:.2f} \n R\u00b2= {res.rvalue ** 2:.2f}  \n P = {res.pvalue:.2f}',
+                        label=f' y = {res.slope:.4f}x+{res.intercept:.2f} \n R\u00b2= {res.rvalue ** 2:.2f}',
                         # ,\n r = {res.rvalue:.2f}',
 
                         # locals = 'right',
@@ -49,7 +49,7 @@ for i in range(13,25):
                         )
     else:
         p = sns.regplot(x='Year', y=s, data=df, ci=None, scatter=False,
-                        label=f' y = {res.slope:.4f}x{res.intercept:.2f} \n R\u00b2= {res.rvalue ** 2:.2f}  \n P = {res.pvalue:.2f}',
+                        label=f' y = {res.slope:.4f}x{res.intercept:.2f} \n R\u00b2= {res.rvalue ** 2:.2f}',
                         # ,\n r = {res.rvalue:.2f}',
 
                         # locals = 'right',
