@@ -16,18 +16,18 @@ for name in names:
     es = []
     for AI in df_raw.AI:
         if AI >= 1.00:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmean.values[k] - 2)/(df_raw.Tmean.values[k] - 2 + 273.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmean.values[k] - 2)/(df_raw.Tmean.values[k] - 2 + 237.3))))
         if 0.65<=AI<1:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 0)/(df_raw.Tmin.values[k] - 0 + 273.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 0)/(df_raw.Tmin.values[k] - 0 + 237.3))))
         if 0.20<=AI<0.65:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 1)/(df_raw.Tmin.values[k] - 1 + 273.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 1)/(df_raw.Tmin.values[k] - 1 + 237.3))))
         if 0.05<=AI<0.20:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 2)/(df_raw.Tmin.values[k] - 2 + 273.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 2)/(df_raw.Tmin.values[k] - 2 + 237.3))))
         if AI<0.05:
-            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 4)/(df_raw.Tmin.values[k] - 4 + 273.3))))
+            ea.append(float(0.611*math.exp(17.27*(df_raw.Tmin.values[k] - 4)/(df_raw.Tmin.values[k] - 4 + 237.3))))
 
     # print(len(Tdew))
-        es.append((0.611*np.exp(17.27*df_raw.Tmin.values[k]/(df_raw.Tmin.values[k]+273.3))+0.611*np.exp(17.27*df_raw.Tmax.values[k]/(df_raw.Tmax.values[k]+273.3)))/2)
+        es.append((0.611*np.exp(17.27*df_raw.Tmin.values[k]/(df_raw.Tmin.values[k]+237.3))+0.611*np.exp(17.27*df_raw.Tmax.values[k]/(df_raw.Tmax.values[k]+237.3)))/2)
     # print(type(ea),type(es))
         k = k + 1
 
@@ -61,13 +61,16 @@ for name in names:
     Rs_CF = kRs_CF*(df_raw.Tmax-df_raw.Tmin)**0.5*df_raw.Ra
     df_raw.insert(df_raw.shape[1],'Rs_G',Rs_G)
     df_raw.insert(df_raw.shape[1],'Rs_CF',Rs_CF)
-    gamal = 1.013*10**(-3)/(0.662*2.45) * df_raw.Pa
+    gamal = (1.013*10**(-3))/(0.662*2.45) * df_raw.Pa
+    # print(1.013*10**(-3))
     df_raw.insert(df_raw.shape[1],'gamal',gamal)
-    delta = 4098*(0.6108*np.exp(17.27*df_raw.Tmean/(df_raw.Tmean+273.3)))/(df_raw.Tmean+273.3)**2
+    delta = 4098*(0.6108*np.exp(17.27*df_raw.Tmean/(df_raw.Tmean+237.3)))/(df_raw.Tmean+237.3)**2
     df_raw.insert(df_raw.shape[1],'delta',delta)
-    # print(df_raw)
-    ET0_PMT_G = (0.408*df_raw.delta*df_raw.Rs_G + (df_raw.gamal*900/(df_raw.Tmean+273))*2*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*2))
-    ET0_PMT_CF = (0.408*df_raw.delta*df_raw.Rs_CF + (df_raw.gamal*900/(df_raw.Tmean+273))*2*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*2))
+    # print(df_raw)df_
+    ET0_PMT_G = (0.408*df_raw.delta*df_raw.Rs_G + (df_raw.gamal*900/(df_raw.Tmean+273))*np.average(df_raw.wind.values)*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*np.average(df_raw.wind.values)))
+    ET0_PMT_CF = (0.408*df_raw.delta*df_raw.Rs_CF + (df_raw.gamal*900/(df_raw.Tmean+273))*np.average(df_raw.wind.values)*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*np.average(df_raw.wind.values)))
+    # ET0_PMT_G = 0.0135*kRs_G*df_raw.Ra/2.45*(df_raw.Tmax-df_raw.Tmin)**0.5*(df_raw.Tmean+17.8)
+    # ET0_PMT_CF = 0.0135*kRs_CF*df_raw.Ra/2.45*(df_raw.Tmax-df_raw.Tmin)**0.5*(df_raw.Tmean+17.8)
     df_raw.insert(df_raw.shape[1],'ET0_PMT_G1',ET0_PMT_G)
     df_raw.insert(df_raw.shape[1],'ET0_PMT_CF1',ET0_PMT_CF)
     df_raw.to_excel('D:\TD\my_work\\data1\\' + name,index=False)
