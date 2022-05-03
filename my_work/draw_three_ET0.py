@@ -20,7 +20,7 @@ for i in range(3):
                  x = 'Year', y = s,
                  color = color[i],
                  marker='o',
-                 markersize=3,
+                 # markersize=3,
                  # lw=3
                  )
     y = df[s].values
