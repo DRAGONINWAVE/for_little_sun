@@ -4,6 +4,10 @@ import os
 from scipy import stats
 import math
 import numpy as np
+import pandas as pd
+import numpy as np
+import tushare as ts
+from sklearn.linear_model import LinearRegression
 from pandas import Series
 import seaborn as sns
 
@@ -19,6 +23,18 @@ for name in names:
     # ea = []
     df_raw = pd.read_excel('D:\TD\my_work\data\\'+name)
     # print(type(df_raw.ET0_PMT_CF))
+    # x = df_raw.ET0_PMT
+    # print(df_raw.time)
+    ET0_PMT1 = df_raw.ET0_PMT
+    x = pd.DataFrame(ET0_PMT1)
+    # y = df_raw.ET0_PMT_CF
+    y = pd.DataFrame(df_raw.ET0_PMT_CF)
+    # model = LinearRegression(fit_intercept=False)
+    # model.fit(x, y)
+    model = LinearRegression(fit_intercept=False).fit(x, y)
+    print(model.intercept_)
+    # b = sum(df_raw.ET0_PMT_CF*df_raw.ET0_PMT)/sum(df_raw.ET0_PMT*df_raw.ET0_PMT)
+    # print(b)
     ET0_PMT_CF = ET0_PMT_CF.append(df_raw.ET0_PMT_CF)
     # print(type(df_raw.ET0_PMT_CF))
     ET0_PMT_G = ET0_PMT_G.append(df_raw.ET0_PMT_G)
