@@ -13,16 +13,19 @@ names = os.listdir(r'D:\TD\my_work\data')
 ET0_PMT_CF = pd.Series()
 ET0_PMT_G = pd.Series()
 ET0_PMT = pd.Series()
+i = 0
 for name in names:
     print(name)
     # ea = []
     df_raw = pd.read_excel('D:\TD\my_work\data\\'+name)
     # print(type(df_raw.ET0_PMT_CF))
-
     ET0_PMT_CF = ET0_PMT_CF.append(df_raw.ET0_PMT_CF)
     # print(type(df_raw.ET0_PMT_CF))
     ET0_PMT_G = ET0_PMT_G.append(df_raw.ET0_PMT_G)
     ET0_PMT = ET0_PMT.append(df_raw.ET0_PMT)
+    if i == 2:
+        break
+    i = i + 1
 
 
 all_data = pd.DataFrame(dict(ET0_PMT_CF=ET0_PMT_CF,ET0_PMT_G=ET0_PMT_G,ET0_PMT=ET0_PMT,))
