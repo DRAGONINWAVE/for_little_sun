@@ -38,6 +38,7 @@ for name in names:
     # kRs_G = []
     i = 0
     # for AI in df_raw.AI:
+    # df_raw.wind = df_raw.wind*4.87/(math.log(67.8*10-5.42))
     kRs_G = (0.3648 - 0.0099*np.average(df_raw.Tmax.values - df_raw.Tmin.values) + 0.0194*np.average(df_raw.wind.values) - 0.0017*np.average(df_raw.RH.values))
         # i = i + 1
     # df_raw.insert(df_raw.shape[1],'kRs_G',kRs_G)
@@ -69,8 +70,10 @@ for name in names:
     # print(df_raw)df_
     ET0_PMT_G = (0.408*df_raw.delta*df_raw.Rs_G + (df_raw.gamal*900/(df_raw.Tmean+273))*np.average(df_raw.wind.values)*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*np.average(df_raw.wind.values)))
     ET0_PMT_CF = (0.408*df_raw.delta*df_raw.Rs_CF + (df_raw.gamal*900/(df_raw.Tmean+273))*np.average(df_raw.wind.values)*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*np.average(df_raw.wind.values)))
+    ET0_PMT1 = (0.408*df_raw.delta*df_raw.Rs+ (df_raw.gamal*900/(df_raw.Tmean+273))*np.average(df_raw.wind.values)*df_raw.VPD)/(df_raw.delta+df_raw.gamal*(1+0.34*np.average(df_raw.wind.values)))
     # ET0_PMT_G = 0.0135*kRs_G*df_raw.Ra/2.45*(df_raw.Tmax-df_raw.Tmin)**0.5*(df_raw.Tmean+17.8)
     # ET0_PMT_CF = 0.0135*kRs_CF*df_raw.Ra/2.45*(df_raw.Tmax-df_raw.Tmin)**0.5*(df_raw.Tmean+17.8)
     df_raw.insert(df_raw.shape[1],'ET0_PMT_G1',ET0_PMT_G)
     df_raw.insert(df_raw.shape[1],'ET0_PMT_CF1',ET0_PMT_CF)
+    df_raw.insert(df_raw.shape[1],'ET0_PMT1',ET0_PMT1)
     df_raw.to_excel('D:\TD\my_work\\data1\\' + name,index=False)
