@@ -32,7 +32,7 @@ for name in names:
     # model = LinearRegression(fit_intercept=False)
     # model.fit(x, y)
     model = LinearRegression(fit_intercept=False).fit(x, y)
-    print(model.intercept_)
+    print(model)
     # b = sum(df_raw.ET0_PMT_CF*df_raw.ET0_PMT)/sum(df_raw.ET0_PMT*df_raw.ET0_PMT)
     # print(b)
     ET0_PMT_CF = ET0_PMT_CF.append(df_raw.ET0_PMT_CF)
