@@ -27,7 +27,7 @@ for i in range(3):
     res = stats.linregress(list(df.Year), list(y))
     # print(res)
     p = sns.regplot(x='Year', y=s, data=df, ci=None, scatter=False,
-                        label=f' y = {res.slope:.4f}x{res.intercept:.2f}',
+                        label=f'{s} y = {res.slope:.4f}x{res.intercept:.2f}',
                         # ,\n r = {res.rvalue:.2f}',
 
                         # locals = 'right',
