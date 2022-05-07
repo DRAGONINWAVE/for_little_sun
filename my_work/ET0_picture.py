@@ -75,10 +75,12 @@ for i in range(13,25):
                grid_color='r', grid_alpha=1)
     # font = {'fontsize': 80}
 
-
+    plt.xlabel(u'年代', fontsize=80)
     # axes1.titlesize(80)
-    plt.xlabel(u'年代',fontsize = 80)
-    plt.ylabel(u'ET0'+u'mm/day',fontsize = 80)
+    if i == 13 or i == 18 or i == 19:
+        plt.ylabel(u'ET0'+u'mm/a',fontsize = 80)
+    else:
+        plt.ylabel(u'ET0'+u'mm/m',fontsize = 80)
     # # ax.set_title(data[k]+'.'+ls[k],
     #                   fontsize=160,
     #                   y=-0.22,
