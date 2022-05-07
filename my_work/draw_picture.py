@@ -24,6 +24,7 @@ plt.rcParams['font.sans-serif']=['SimSun'] #用来正常显示中文标签
 plt.rcParams['axes.unicode_minus'] = False #用来正常显示负号
 
 for ax in axes1.flatten():
+
     s = df.columns[i]
     ls = ['气温变化趋势','气温距平变化趋势','第一季度','第二季度','第三季度','第四季度']
     data=['a','b','c','d','e','f']
@@ -33,17 +34,26 @@ for ax in axes1.flatten():
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
     # print(s)
     y = df.iloc[:,i].values
-    sns.lineplot(
-        data=df,
-        x = 'Year',y = s,
-        color = 'black',
-        # width = 5
-        # kind="line",
-        # ax = ax
-        marker='o',
-        markersize=30,
-        lw = 3
-                 )
+
+    # plt.show()
+    if i == 2:
+        print(s)
+        plt.bar(df.Year, df.annual_Team, fc='black')
+        # ax.xaxis.set_ticks_position('bottom')
+        # ax.spines['bottom'].set_position(('data', 0))
+        # ax.spines['top'].set_color('none')
+    else:
+        sns.lineplot(
+            data=df,
+            x = 'Year',y = s,
+            color = 'black',
+            # width = 5
+            # kind="line",
+            # ax = ax
+            marker='o',
+            markersize=30,
+            lw = 3
+                     )
     res = stats.linregress(list(df.Year),y)
     # print(res)
     p = sns.regplot(x='Year', y=s, data=df,ci=None,scatter=False,
@@ -103,17 +113,24 @@ for ax in axes2.flatten():
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
     # print(s)
     y = df.iloc[:,i].values
-    sns.lineplot(
-        data=df,
-        x = 'Year',y = s,
-        color = 'black',
-        # width = 5
-        # kind="line",
-        # ax = ax
-        marker = 'o',
-        markersize = 30,
-        lw = 3
-                 )
+    if i == 2:
+        print(s)
+        plt.bar(df.Year, df.annual_Team, fc='black')
+        # ax.xaxis.set_ticks_position('bottom')
+        # ax.spines['bottom'].set_position(('data', 0))
+        # ax.spines['top'].set_color('none')
+    else:
+        sns.lineplot(
+            data=df,
+            x = 'Year',y = s,
+            color = 'black',
+            # width = 5
+            # kind="line",
+            # ax = ax
+            marker = 'o',
+            markersize = 30,
+            lw = 3
+                     )
     res = stats.linregress(list(df.Year),y)
     # print(res.pvalue)
     p = sns.regplot(x='Year', y=s, data=df,ci=None,scatter=False,
