@@ -113,9 +113,9 @@ for ax in axes2.flatten():
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
     # print(s)
     y = df.iloc[:,i].values
-    if i == 2:
+    if i == 8:
         print(s)
-        plt.bar(df.Year, df.annual_Team, fc='black')
+        plt.bar(df.Year, df.annual_RH, fc='black')
         # ax.xaxis.set_ticks_position('bottom')
         # ax.spines['bottom'].set_position(('data', 0))
         # ax.spines['top'].set_color('none')
