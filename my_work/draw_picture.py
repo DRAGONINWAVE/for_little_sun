@@ -79,7 +79,7 @@ for ax in axes1.flatten():
     plt.xlabel(u'年代',fontsize = 80)
     plt.ylabel(u'温度'+u'（℃）',fontsize = 80)
     ax.set_title(data[k]+'.'+ls[k],
-                      fontsize=160,
+                      fontsize=120,
                       y=-0.22,
                       pad=0
                       )
@@ -152,7 +152,7 @@ for ax in axes2.flatten():
 
     plt.xlabel(u'年代',fontsize = 80)
     plt.ylabel(u'相对湿度'+u'（%）',fontsize = 80)
-    ax.set_title(data[k1]+'.'+ls1[k1],fontsize=160,
+    ax.set_title(data[k1]+'.'+ls1[k1],fontsize=120,
                         y = -.215,
                         # pad = 10
                       )
