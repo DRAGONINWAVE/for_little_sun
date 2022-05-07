@@ -36,6 +36,7 @@ for i in range(3):
                         # ls='-'
                         # lw = 10,
                         )
+    plt.xlabel(u'年代')
     font1 = {'family': 'Times New Roman','size':8}
     p.legend(loc = 'upper right',fontsize = 8,prop=font1)
 
