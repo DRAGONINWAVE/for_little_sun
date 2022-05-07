@@ -25,14 +25,23 @@ for i in range(13,25):
     plt.rcParams['font.sans-serif']=['SimSun'] #用来正常显示中文标签
     plt.rcParams['axes.unicode_minus'] = False #用来正常显示负号
 
+
     s = df.columns[i]
-    sns.lineplot(data = df,
-                 x = 'Year', y = s,
-                 color = 'black',
-                 marker='o',
-                 markersize=30,
-                 lw=3
-                 )
+    print(s,i)
+    if i == 14:
+        # print(s)
+        plt.bar(df.Year, df.annual_ET0, fc='black')
+        # ax.xaxis.set_ticks_position('bottom')
+        # ax.spines['bottom'].set_position(('data', 0))
+        # ax.spines['top'].set_color('none')
+    else:
+        sns.lineplot(data = df,
+                     x = 'Year', y = s,
+                     color = 'black',
+                     marker='o',
+                     markersize=30,
+                     lw=3
+                     )
     y = df.iloc[:,i].values
     res = stats.linregress(list(df.Year), y)
     # print(res)
