@@ -15,7 +15,7 @@ plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 for i in range(3):
     ET0 = ['ETOmean','ET0_PMT_G','ET0_PMT_CF']
     color = ['black','orange','blue']
-    ET = ['ET$_{0-PM}$','ET$_{0-PMT(kRs_G)}$','ET$_{0-PMT(kRs)}$']
+    ET = ['ET0-PM','ET0-PMT(kRs_G)','ET0-PMT(kRs)']
     d = ET[i]
     s = ET0[i]
     sns.lineplot(data = df,
@@ -39,7 +39,7 @@ for i in range(3):
                         # lw = 10,
                         )
     plt.xlabel(u'年代')
-    plt.ylabel(u'ET$_{0}$ mm a$^{-1}$')
+    plt.ylabel(u'ET0 mm a$^{-1}$')
     font1 = {'family': 'Times New Roman','size':8}
     p.legend(loc = 'upper right',fontsize = 8,prop=font1)
 
