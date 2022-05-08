@@ -146,6 +146,10 @@ for k in range(len(names)):
             s2_ET0 = s2_ET0 / day6
             s3_ET0 = s3_ET0 / day7
             s4_ET0= s4_ET0 / day8
+            s11_ET0 = s11_ET0 / day1
+            s22_ET0 = s22_ET0 / day2
+            s33_ET0 = s33_ET0 / day3
+            s44_ET0= s44_ET0 / day4
             y_ET0_PMT_G = y_ET0_PMT_G / day
             y_ET0_PMT_CF = y_ET0_PMT_CF / day
             average_T.append(y_T)
