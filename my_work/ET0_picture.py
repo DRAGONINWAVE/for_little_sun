@@ -77,7 +77,7 @@ for i in range(13,25):
 
     plt.xlabel(u'年代', fontsize=80)
     # axes1.titlesize(80)
-    if i == 13 or i == 18 or i == 19:
+    if i == 13 or i == 14 or i == 18 or i == 19:
         plt.ylabel(u'ET0'+u' mm a$^{-1}$',fontsize = 80)
     else:
         plt.ylabel(u'ET0'+u' mm m$^{-1}$',fontsize = 80)
