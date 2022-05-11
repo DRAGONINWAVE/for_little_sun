@@ -41,7 +41,7 @@ for i in range(3):
     plt.xlabel(u'年代')
     plt.ylabel(u'ET0 mm a$^{-1}$')
     font1 = {'family': 'Times New Roman','size':8}
-    p.legend(loc = 'upper right',fontsize = 8,prop=font1)
+    p.legend(loc = 'right',fontsize = 8,prop=font1)
 
 
 p1 = p.get_figure()
