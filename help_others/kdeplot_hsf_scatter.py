@@ -36,6 +36,8 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
     cmaps = sns.cubehelix_palette(start=s,light=1,as_cmap=True)
     season = ['Spring','Summer','Fall','Winter']
+    season1 = ['春季','夏季','秋季','冬季']
+
     cleared_data1 = pd.read_excel('D:\\TD\\help_others\\hsf_kdeplot\\'+season[l]+'.xlsx')
     ls = cleared_data1.columns.values[-4:]
     y = cleared_data1.iloc[:, -4].values  # 因变量
@@ -78,7 +80,7 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
                 )
     ax.tick_params(axis='y', labelsize=50)
     ax.tick_params(axis='x', labelsize=50)
-    plt.xlabel(ls[k]+'（'+season[l]+'）',fontsize = 70)
+    plt.xlabel(ls[k]+'（'+season1[l]+'）',fontsize = 70)
     plt.ylabel('地表温度'+'(°C)',fontsize = 70)
     p.legend(loc = 'upper right',fontsize = 50)
     k = k + 1
