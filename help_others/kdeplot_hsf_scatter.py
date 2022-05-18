@@ -28,6 +28,8 @@ f, axes = plt.subplots(3,4,
 i = 4
 k = 1
 l = 0
+plt.rcParams['font.sans-serif'] = ['SimSun']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     # print(ax)
     plt.sca(ax)
@@ -76,8 +78,8 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
                 )
     ax.tick_params(axis='y', labelsize=50)
     ax.tick_params(axis='x', labelsize=50)
-    plt.xlabel(season[l]+'_'+ls[k],fontsize = 70)
-    plt.ylabel(season[l]+'_'+ls[0].title()+'(°C)',fontsize = 70)
+    plt.xlabel(ls[k]+'（'+season[l]+'）',fontsize = 70)
+    plt.ylabel('地表温度'+'(°C)',fontsize = 70)
     p.legend(loc = 'upper right',fontsize = 50)
     k = k + 1
     i = i + 1
