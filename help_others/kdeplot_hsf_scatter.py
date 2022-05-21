@@ -43,9 +43,9 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     y = cleared_data1.iloc[:, -4].values  # 因变量
     x = cleared_data1.iloc[:, i].values
     df = pd.DataFrame(dict(x1 = x,JAN_tem=y))
-    # if ls[k] == 'NDVI':
-    #     df = df.drop(df[(df['x1']< 0.2)].index)  #0.00
-    #     # df.to_excel('NDVI'+season[l]+'.xlsx',index=False)
+    if ls[k] == 'NDVI':
+        df = df.drop(df[(df['x1']< 0.2)].index)  #0.00
+        # df.to_excel('NDVI'+season[l]+'.xlsx',index=False)
     # sns.kdeplot(
     #     x = 'x1' , y = 'JAN_tem',
     #     data = df,
