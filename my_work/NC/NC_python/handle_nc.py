@@ -56,4 +56,12 @@ print(long.shape,lati.shape,data.shape)
 plt.contourf(long,lati,data[30,:,:]-273) #转为摄氏度
 plt.colorbar()
 
+print(np.argwhere(lati==26),np.argwhere(lati==31),
+        np.argwhere(long==80+180),np.argwhere(long==89+180))
+print()
 plt.show()
+
+# 28.909304, 80.030027
+# 30.446004, 81.612058
+# 26.339878, 88.017087
+# 26.764536, 88.195477
