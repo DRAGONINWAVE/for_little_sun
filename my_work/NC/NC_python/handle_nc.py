@@ -56,5 +56,4 @@ print(long.shape,lati.shape,data.shape)
 plt.contourf(long,lati,data[30,:,:]-273) #转为摄氏度
 plt.colorbar()
 
-
 plt.show()
