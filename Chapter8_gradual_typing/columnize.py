@@ -7,7 +7,7 @@ def columnize(sequence:Sequence[str],num_columns:int = 0) -> list[tuple[str, ...
     num_rows += bool(reminder)
     return [tuple(sequence[i::num_rows]) for i in range(num_rows)]
 
-
 animals = 'drake fawn heron ibex koala lynx tahr xerus yak zapus'.split()
+print(animals)
 table = columnize(animals)
 print(table)
