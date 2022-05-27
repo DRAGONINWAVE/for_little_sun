@@ -2,7 +2,7 @@
 import xarray as xr
 import os
 import numpy as np
-def annex(files,path):
+def annex(path,files):
     data_all = []
     a = []
     b = []
@@ -32,18 +32,18 @@ def annex(files,path):
     T2m_all = xr.DataArray(data=t2m_al, dims=('time', 'lat', 'lon'),
                        coords=dict(time=t_al, lat=lat, lon=lon))
     # dataarray转化为dataset
-    return T2m_all
+    ds = xr.Dataset({'t2m':T2m_all})
+    return ds
 
 def main():
-    path = 'F:\\Nepal_ET0'  # 输入文件存储路径
+    path = 'F:\\Nepal_ET0\Tmin_test'  # 输入文件存储路径
     folder = os.walk(path)  # 生成器，里面包含三个东西：根目录，根目录下的目录和文件；生成器只能用list读取
-    print(list(folder))
+    # print(list(folder))
     files = list(folder)[0][2]  # 选择文件名集合的list
-    OLR = annex(files,path)
-
-    ds = xr.Dataset({'t2m': OLR})
+    # ds = list(folder)[0][2][1]
+    annex(path,files).to_netcdf(r'F:\\t2m_al_test.nc')
     # 输出成nc文件
-    ds.to_netcdf(r'F:\\t2m_al_test.nc')
+    # ds.to_netcdf(r'F:\\t2m_al_test.nc')
 
 
 if __name__=='__main__':
