@@ -36,12 +36,16 @@ def annex(path,files):
     return ds
 
 def main():
-    path = 'F:\\Nepal_ET0\Tmin_test'  # 输入文件存储路径
+    path = 'F:\\Nepal_ET0'  # 输入文件存储路径
     folder = os.walk(path)  # 生成器，里面包含三个东西：根目录，根目录下的目录和文件；生成器只能用list读取
     # print(list(folder))
-    files = list(folder)[0][2]  # 选择文件名集合的list
+    # files = list(folder)[0][2]  # 选择文件名集合的list
     # ds = list(folder)[0][2][1]
-    annex(path,files).to_netcdf(r'F:\\t2m_al_test.nc')
+    i = [3,5]
+    j = [2,4]
+    for s,n in  zip(i,j):
+
+        annex(str(list(os.walk(path))[s][2]),str(list(os.walk(path))[s][0])).to_netcdf('F:\\'+str(list(os.walk(path)[n][1]))+'t2m_al_test.nc')
     # 输出成nc文件
     # ds.to_netcdf(r'F:\\t2m_al_test.nc')
 
