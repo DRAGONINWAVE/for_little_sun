@@ -9,13 +9,13 @@ def annex(path,files):
     # print(files)
     i = 0
     for file in files:
-        f = xr.open_dataset(path + '/' + file)
+        f = xr.open_dataset(path + '\\' + file)
         # print(f.variables.keys())
         # 读取变量，如果数据过大可以索引，但索引后合成的nc文件无法再索引
         lon = f['lon']
         lat = f['lat']
         time = f['time']
-        t2m = f['t2m']
+        t2m = f['d2m']
 
         # concat函数按维度合并
         for t in time:
@@ -43,9 +43,9 @@ def main():
     # ds = list(folder)[0][2][1]
     i = [3,5]
     j = [2,4]
-    for s,n in  zip(i,j):
-
-        annex(str(list(os.walk(path))[s][2]),str(list(os.walk(path))[s][0])).to_netcdf('F:\\'+str(list(os.walk(path)[n][1]))+'t2m_al_test.nc')
+    for s,n in zip(i,j):
+        print(n)
+        annex(list(os.walk(path))[s][0],list(os.walk(path))[s][2]).to_netcdf('F:\\'+str(list(os.walk(path)[n][1]))+'t2m_al_test.nc')
     # 输出成nc文件
     # ds.to_netcdf(r'F:\\t2m_al_test.nc')
 
