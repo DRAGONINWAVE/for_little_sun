@@ -28,8 +28,9 @@ def graph(lon,lat,target,levelT,colorT,title):
     plt.close()
 
 nc=Dataset('F:\\Nepal_ET0\\Tmin\\200101.nc')
-print(nc.variables.keys())
-
+nc1 = Dataset('F:\\Nepal_ET0\\Tmin\\200102.nc')
+# print(nc.variables.keys())
+# print(nc.realization)
 for var in nc.variables.keys():
     data=nc.variables[var][:].data
     print(var,data.shape)
@@ -38,14 +39,16 @@ for var in nc.variables.keys():
 # 看出是逐时数据
 
 time = nc.variables['time'][:].data
-print(time)
+# print(time)
 # for i in range(3):
 #     tstamp = (time[i] - 613608) * 3600  # 1900年1月1日零时距离1970年1月1日零时有613608个小时
 #     date = datetime.datetime.utcfromtimestamp(tstamp)
 #     print(date.strftime("%Y-%m-%d %H:%M:%S"))
-print(nc.variables.keys())
+# print(nc.variables.keys())
+
 
 data=nc.variables['t2m'][:]
+# print(data)
 print(data.shape)
 
 long= nc.variables['lon'][:]
