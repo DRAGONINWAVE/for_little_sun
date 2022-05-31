@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="OPEN_SSH" host="login.hpc.nuist.edu.cn" id="df6f6839-98dc-4acd-98d6-2810371fd9e7" port="22" nameFormat="DESCRIPTIVE" username="hl_longy" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>
