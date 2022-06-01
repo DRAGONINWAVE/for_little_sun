@@ -41,11 +41,8 @@ def main():
     # print(list(folder))
     # files = list(folder)[0][2]  # 选择文件名集合的list
     # ds = list(folder)[0][2][1]
-    i = [3,5]
-    j = [2,4]
-    for s,n in zip(i,j):
-        print(n)
-        annex(list(os.walk(path))[s][0],list(os.walk(path))[s][2]).to_netcdf('F:\\'+list(os.walk(path))[n][1][0]+'t2m_al_test.nc')
+
+    annex(list(os.walk(path))[3][0],list(os.walk(path))[3][2]).to_netcdf('F:\\'+list(os.walk(path))[2][1][0]+'t2m_al_test.nc')
     # 输出成nc文件
     # ds.to_netcdf(r'F:\\t2m_al_test.nc')
 
