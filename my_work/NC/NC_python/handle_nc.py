@@ -5,27 +5,27 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
 from pandas import DataFrame
 import datetime
-#用Basemap画地图
-def graph(lon,lat,target,levelT,colorT,title):
-    b_map=Basemap(resolution='l', area_thresh=10000, projection='cyl',
-                  llcrnrlon=min(lon), urcrnrlon=max(lon), llcrnrlat=min(lat),urcrnrlat=max(lat))
-    #llcrnrlon=0, urcrnrlon=360, llcrnrlat=-90,urcrnrlat=90
-    print(type(target))
-    fig=plt.figure(figsize=(9, 6))  #plt.figure(figsize=(12, 8))
-    ax=fig.add_axes([0.1,0.1,0.8,0.8])
-    lon,lat=np.meshgrid(lon,lat)
-    x,y=b_map(lon,lat)
-    print(x.shape,y.shape,target.shape)
-    cs=b_map.contourf(x,y,target,levels=levelT,colors=colorT) #target[0,:,:]
-    b_map.colorbar(cs)
-    b_map.drawcoastlines(linewidth=1)
-    b_map.drawcountries(linewidth=1.5)
-
-    plt.title(title,size=20)
-
-    #plt.savefig('Rainf_0.png',dpi=300)
-    plt.show()
-    plt.close()
+# #用Basemap画地图
+# def graph(lon,lat,target,levelT,colorT,title):
+#     b_map=Basemap(resolution='l', area_thresh=10000, projection='cyl',
+#                   llcrnrlon=min(lon), urcrnrlon=max(lon), llcrnrlat=min(lat),urcrnrlat=max(lat))
+#     #llcrnrlon=0, urcrnrlon=360, llcrnrlat=-90,urcrnrlat=90
+#     print(type(target))
+#     fig=plt.figure(figsize=(9, 6))  #plt.figure(figsize=(12, 8))
+#     ax=fig.add_axes([0.1,0.1,0.8,0.8])
+#     lon,lat=np.meshgrid(lon,lat)
+#     x,y=b_map(lon,lat)
+#     print(x.shape,y.shape,target.shape)
+#     cs=b_map.contourf(x,y,target,levels=levelT,colors=colorT) #target[0,:,:]
+#     b_map.colorbar(cs)
+#     b_map.drawcoastlines(linewidth=1)
+#     b_map.drawcountries(linewidth=1.5)
+#
+#     plt.title(title,size=20)
+#
+#     #plt.savefig('Rainf_0.png',dpi=300)
+#     plt.show()
+#     plt.close()
 
 nc=Dataset('F:\\Nepal_ET0\\Tmin\\200101.nc')
 nc1 = Dataset('F:\\Nepal_ET0\\Tmin\\200102.nc')
@@ -71,8 +71,22 @@ print()
 #     projection = 'cyl')#投影方式：默认，圆柱投影
 # #读取图形文件，画中国行政边界
 # m.readshapefile('bou2_4l','China Map',color='k',linewidth=1.2)
+import numpy as np
 
+import matplotlib.pyplot as plt
+
+from mpl_toolkits.basemap import Basemap
+plt.figure(1)
+
+
+map=Basemap(llcrnrlon=79.1,llcrnrlat=26,urcrnrlon=89.,urcrnrlat=30.9)
+CHN = r'F:\Nepal_ET0'
+map.readshapefile(CHN+'\\NEPAL_BOUNDARIES\\npl_admbnda_adm0_nd_20201117',
+'country',drawbounds=True)
+map.readshapefile(CHN+'\\NEPAL_BOUNDARIES\\npl_admbnda_adm1_nd_20201117',
+'states',drawbounds=True)
 plt.show()
+# plt.show()
 
 # 28.909304, 80.030027
 # 30.446004, 81.612058
