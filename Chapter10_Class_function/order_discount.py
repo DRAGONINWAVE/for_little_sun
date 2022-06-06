@@ -62,3 +62,8 @@ def large_order_promo(order:Order) -> Decimal:
     if len(distinct_items) >= 10:
         return order.total() * Decimal('0.07')
     return Decimal(0)
+
+joe = Customer('John Doe',0)
+
+ann = Customer('Ann Smith',1100)
+print(ann)
