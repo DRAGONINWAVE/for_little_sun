@@ -64,6 +64,10 @@ def large_order_promo(order:Order) -> Decimal:
     return Decimal(0)
 
 joe = Customer('John Doe',0)
-
+print(joe)
 ann = Customer('Ann Smith',1100)
 print(ann)
+cart = [LineItem('banana',4,Decimal('.5')),
+        LineItem('apple',10,Decimal('1.5')),
+        LineItem('watermelon',5,Decimal(5))]
+print(cart)
