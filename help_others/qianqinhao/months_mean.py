@@ -30,7 +30,7 @@ for i in range(1951,2018):
     if i == int(str(File.年[counts])):
         # print(str(File.date[counts]).split('/')[0])
         # print(File.year[counts])
-        for month in range(1,13):
+        for month in range(4,10):
             day = 0
             # m_Rs = 0
             # m_S = 0
@@ -38,7 +38,7 @@ for i in range(1951,2018):
             m_Tmean = 0
             for days in range(1,32):
                 # print(str(File.date[counts]).split('-')[1])
-                if month == int(str(File.月[counts])):
+                if month in int(str(File.月[counts])):
                     # print((str(File.date[counts]).split('-')[:]))
                     # m_Rs = m_Rs + File.RS[counts]
                     # print(m_Rs)
@@ -86,8 +86,8 @@ year_sum = {
 # print(year_sum)
 print(len(lTmean),len(lyTmean))
 MM = pd.DataFrame(data=month_mean)
-MM.to_excel('D:\TD\help_others\qianqinhao\二步处理\\'+Filename+'月平均.xlsx',index=False)
-YM = pd.DataFrame(data=year_sum)
-YM.to_excel('D:\TD\help_others\qianqinhao\二步处理\\'+Filename+'年总和.xlsx',index=False)
+MM.to_excel('D:\TD\help_others\qianqinhao\二步处理\\'+Filename+'月平均.xlsx')
+# YM = pd.DataFrame(data=year_sum)
+# YM.to_excel('D:\TD\help_others\qianqinhao\二步处理\\'+Filename+'年总和.xlsx',index=False)
 print(counts)
 # counts = 0
