@@ -113,18 +113,22 @@ month58=list(range(5,9))
 dayR_58_y = []
 y = list(range(1953,2018))
 counts2 = 0
+
 for a in range(1951,2018):
     dayR_58 = 0
+    R_58 = 0
     for days in range(1,31*12):
         if a == R.年[counts2]:
             if R.月[counts2] in month58:
-                dayR_58 = dayR_58 + R.日照时数[counts2]
+                R_58 = R_58 + R.日照时数[counts2]
+                dayR_58 = dayR_58 + 1
                 # print(dayP_49)1
             counts2 = counts2 + 1
         if counts2 == len(R.年):
             break
-    dayR_58_y.append(dayR_58)
-print(len(start_y),len(end_y))
+    if dayR_58 != 0:
+        dayR_58_y.append(R_58/dayR_58)
+print(len(start_y),len(end_y),len(dayR_58_y))
 data0 = pd.DataFrame(dict(
                           年=year,
                           年平均气温=average_y_T,
@@ -135,14 +139,18 @@ data0 = pd.DataFrame(dict(
                           七八月大于35度日数=day78_35_y,
                           四到九月降水量=dayP_49_y,
                           六月降水量=dayP_6_y,
-                          五到八月日照时数=dayR_58_y,
+                          # 五到八月日照时数=dayR_58_y,
                           起始日序=start_y,
                           终日日序=end_y,
                           持续天数=difference_y
                     ))
-
+data1 = pd.DataFrame(dict(
+    年 = y,
+    五到八月日照时数=dayR_58_y
+))
 print(data0)
 data0.to_excel('YearMean2.xlsx',index=False)
+data1.to_excel('Rmean.xlsx',index=False)
 print('ok')
 
 
