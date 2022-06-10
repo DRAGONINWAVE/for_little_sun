@@ -6,8 +6,10 @@ import os
 filepath = r'D:\TD\help_others\qianqinhao\二步处理\\'
 Filename = 'cleared_dropna'
 df = pd.read_excel(filepath+ Filename +'.xlsx')
-names = df.columns.values
-print(names)
+p = pd.read_excel('D:\TD\help_others\qianqinhao\\P_cleared_dropna.xlsx')
+names1 = df.columns.values
+names2 = p.columns.values
+print(names1,names2)
 counts = 0
 s23_T = 0
 m78_T = 0
@@ -17,10 +19,11 @@ average_y_T = []
 day_all_35_y = []
 day78_35_y = []
 AT_49_y = []
+P_49_y = []
 year = []
 season23 = list(range(4, 10))
 season7_8 = list(range(7,9))
-print(df)
+# print(df)
 for i in range(1951,2018):
     y_T = 0
     AT_49  = 0
@@ -29,6 +32,7 @@ for i in range(1951,2018):
     day78 = 0
     day_all_35 = 0
     day78_35 = 0
+
     for days in range(1,31*12):
         if i ==df.年[counts]:
             y_T = y_T + df.平均[counts]
@@ -44,7 +48,7 @@ for i in range(1951,2018):
                     day78_35 = day78_35 + 1
                 if df.平均[counts] >= 13:
                     AT_49 = AT_49 + df.平均[counts]
-            day = day + +1
+            day = day + 1
             counts = counts + 1
         if counts == len(df.年):
             break
@@ -62,7 +66,39 @@ for i in range(1951,2018):
         AT_49_y.append(AT_49)
         day78_35_y.append(day78_35)
 
+dayP_49_y = []
+dayP_6_y = []
+counts1 = 0
+for l in range(1951,2018):
+    dayP_49 = 0
+    dayP_6 = 0
+    for days in range(1,31*12):
+        if l == p.年[counts1]:
+            if p.月[counts1] in season23:
+                dayP_49 = dayP_49 + p.累计降水量[counts1]
+                # print(dayP_49)
+            if p.月[counts1] == 6 :
+                dayP_6 = dayP_6 + p.累计降水量[counts1]
+            counts1 = counts1 + 1
+        if counts1 == len(p.年):
+            break
+    dayP_49_y.append(dayP_49)
+    dayP_6_y.append(dayP_6)
 
+R = pd.read_excel('D:\TD\help_others\qianqinhao\\R_cleared_dropna.xlsx')
+month58=list(range(5,9))
+dayR_58_y = []
+counts2 = 0
+for a in range(1951,2018):
+    dayR_58 = 0
+    for days in range(1,31*12):
+        if a == R.年[counts2]:
+            if R.月[counts2] in season23:
+                dayR_58 = dayR_58 + R.日照时数[counts2]
+                # print(dayP_49)1
+        if counts1 == len(p.年):
+            break
+    dayR_58_y.append(dayR_58)
 data0 = pd.DataFrame(dict(
                           年=year,
                           年平均气温=average_y_T,
@@ -71,8 +107,9 @@ data0 = pd.DataFrame(dict(
                           日最高气温大于35度日数=day_all_35_y,
                           四到九月大于13度的积温=AT_49_y,
                           七八月大于35度日数=day78_35_y,
-
-
+                          四到九月降水量=dayP_49_y,
+                          六月降水量=dayP_6_y,
+                          五到八月日照时数=dayR_58_y
                     ))
 print(data0)
 data0.to_excel('YearMean2.xlsx',index=False)
