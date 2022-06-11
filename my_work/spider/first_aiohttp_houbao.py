@@ -22,4 +22,5 @@ async def main():
             print(resp.status)
             print(await resp.text())
 
-asyncio.run(main)
+
+asyncio.run(main())
