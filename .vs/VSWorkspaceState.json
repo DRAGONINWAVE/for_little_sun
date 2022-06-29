@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.idea"
+    "\\my_work",
+    "\\my_work\\async"
   ],
-  "SelectedNode": "\\dontknow.py",
+  "SelectedNode": "\\my_work\\async\\flags.py",
   "PreviewInSolutionExplorer": false
 }

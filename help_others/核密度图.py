@@ -79,8 +79,9 @@ def myfunc3(x3):
 mymodel3 = list(map(myfunc3, x3))
 p3 = plt.plot(x3, mymodel3,label=f'y={slope3:.2f}*x{intercept3:.2f}',linestyle='--')
 p3.legend()
+plt.show()
 #按照时间来保存图片
 kdeplot_fig = p1.get_figure()
-kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")),dpi=500)
+# kdeplot_fig.savefig(str(time.strftime("%Y%m%d%H%M%S")),dpi=500)
 plt.show()
 plt.close()
