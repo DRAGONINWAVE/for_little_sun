@@ -45,6 +45,10 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     df = pd.DataFrame(dict(x1 = x,JAN_tem=y))
     if ls[k] == 'NDVI':
         df = df.drop(df[(df['x1']< 0.2)].index)  #0.00
+    if ls[k] == 'NDBI':
+        df = df.drop(df[(df['x1']<0 )].index)
+    if ls[k] == 'MNDWI':
+        df = df.drop(df[(df['x1']<0.2 )].index)
         # df.to_excel('NDVI'+season[l]+'.xlsx',index=False)
     # sns.kdeplot(
     #     x = 'x1' , y = 'JAN_tem',
