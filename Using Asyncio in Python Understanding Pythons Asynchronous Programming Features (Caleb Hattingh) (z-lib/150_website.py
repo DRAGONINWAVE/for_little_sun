@@ -7,6 +7,7 @@ async def main():
         # 抓取 150 個網址
         for number in range(1, 151):
             # 指定網站網址
+            await asyncio.sleep(0.01)
             pokemon_url = f'https://pokeapi.co/api/v2/pokemon/{number}'
             # 以 aiohttp 擷取網頁資料
             async with session.get(pokemon_url) as resp:
