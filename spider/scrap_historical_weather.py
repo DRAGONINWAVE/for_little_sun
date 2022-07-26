@@ -8,8 +8,8 @@ import lxml
 import re
 import time
 import pandas
-from numba import jit
-@jit(nopython=True)
+# from numba import jit
+# @jit(nopython=True)
 def main():
     hh = []
     data = pandas.read_excel('749zhan.xlsx')

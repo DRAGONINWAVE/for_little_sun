@@ -17,7 +17,7 @@ def main():
     # Tmax = 'Nepal_ET0\Tdmax\Tdmax'
     ftp = xr.open_dataset(path+name)
     fg = xr.open_dataset(path+gname)
-    fg1 = fg['nepal_aftclip.tif'][:]
+    fg1 = fg['nepal_aftclip.tif']
     print(fg)
     print(fg1)
     print(ftp)

@@ -6,8 +6,9 @@ from tqdm import tqdm
 # 抓取指定編號的網址
 async def get_pokemon(session, number):
     url = f'https://pokeapi.co/api/v2/pokemon/{number}'
-    # await asyncio.sleep(0.5)
+    await asyncio.sleep(0.5)
     async with session.get(url) as resp:
+        await asyncio.sleep(0.5)
         pokemon = await resp.json()
         return "%d：%s" % (number, pokemon['name'])
 
