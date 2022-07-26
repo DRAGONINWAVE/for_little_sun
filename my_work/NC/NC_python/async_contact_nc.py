@@ -6,12 +6,10 @@ from tqdm import tqdm
 import time
 import asyncio
 async def main():
-    start_time = time.perf_counter()
     path = r'F:\Nepal_ET0\Tdmin\min'  # 输入文件存储路径
     # 按照nc文件的格式来进行对nc文件批量命名
     files = []
     for i in tqdm(range(2000, 2021)):
-        await asyncio.sleep(0.1)
         for j in range(1, 13):
             ncname = str(i) + str(j).zfill(2) + '.nc'
             files.append(ncname)
@@ -22,7 +20,7 @@ async def main():
     # print(files)
     i = 0
     for file in tqdm(files):
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(0.01)
         f = xr.open_dataset(path + '/' + file)
         # print(f.variables.keys())
         # 读取变量，如果数据过大可以索引，但索引后合成的nc文件无法再索引
@@ -33,7 +31,8 @@ async def main():
 
         # concat函数按维度合并
         for t in time1:
-            a.append(t)
+            # await asyncio.sleep(0.1)
+             a.append(t)
         t_al = xr.concat(a, dim='time')
 
         for t2m1 in t2m:
@@ -47,6 +46,11 @@ async def main():
                        coords=dict(time=t_al, lat=lat, lon=lon))
     # dataarray转化为dataset
     ds = xr.Dataset({'t2m1': OLR})
-    elapsed_time = time.perf_counter() - start_time
-    print('执行时间%fs', elapsed_time)
+
     # 输出成nc文件
+
+
+start_time = time.perf_counter()
+asyncio.run(main())
+elapsed_time = time.perf_counter() - start_time
+print('执行时间%fs', elapsed_time)
