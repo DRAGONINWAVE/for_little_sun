@@ -9,7 +9,7 @@ import re
 import time
 import pandas
 from numba import jit
-@jit(nopython=True)
+# @jit(nopython=True)
 def main():
     hh = []
     data = pandas.read_excel('749zhan.xlsx')
@@ -20,7 +20,7 @@ def main():
         # print(location)
         for j in tqdm(range(2015,2020)):
             yy = str(j)
-            for i in range(1,12+1):
+            for i in tqdm(range(1,12+1)):
                 # if j == 2019 and i==12:
                 #     break
                 # else:
@@ -32,6 +32,9 @@ def main():
                 for i in tds:
                     hh.append(i.get_text().replace("\r\n", "").replace("\n\n", "").replace("\n", "").replace(" ", ""))
         k = k + 1
-        print(k,len(locations))
+        # print(k,len(locations))
         data = pandas.DataFrame({location:hh})
         data.to_excel(location+"2015-2019.xlsx",index=False,encoding="gb2312")
+
+if __name__ == '__main__':
+    main()

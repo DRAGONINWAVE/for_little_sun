@@ -24,11 +24,11 @@ for file in tqdm(files):
     #读取变量，如果数据过大可以索引，但索引后合成的nc文件无法再索引
     lon=f['lon']
     lat=f['lat']
-    time=f['time']
+    time1=f['time']
     t2m=f['d2m']
 
 #concat函数按维度合并
-    for t in time:
+    for t in time1:
         a.append(t)
     t_al=xr.concat(a,dim='time')
 
@@ -44,5 +44,5 @@ OLR=xr.DataArray(data=t2m_al,dims=('time','lat','lon'),
 #dataarray转化为dataset
 ds=xr.Dataset({'t2m':OLR})
 elapsed_time = time.perf_counter() - start_time
-print('执行时间%fs',elapsed_time)
+print('执行时间:%fs'%elapsed_time)
 #输出成nc文件
