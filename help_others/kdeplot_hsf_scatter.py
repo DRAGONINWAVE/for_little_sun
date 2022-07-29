@@ -28,10 +28,13 @@ f, axes = plt.subplots(3,4,
 i = 4
 k = 1
 l = 0
+m = 0
 plt.rcParams['font.sans-serif'] = ['SimSun']  # 用来正常显示中文标签
 plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
+    font1 = {'family': 'Times New Roman', 'size': 80}
     # print(ax)
+    axtest = ['a','b','c','d','e','f','g','h','i','j','k','l']
     plt.sca(ax)
     plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
     cmaps = sns.cubehelix_palette(start=s,light=1,as_cmap=True)
@@ -45,10 +48,10 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     df = pd.DataFrame(dict(x1 = x,JAN_tem=y))
     if ls[k] == 'NDVI':
         df = df.drop(df[(df['x1']< 0.2)].index)  #0.00
-    if ls[k] == 'NDBI':
-        df = df.drop(df[(df['x1']<0 )].index)
-    if ls[k] == 'MNDWI':
-        df = df.drop(df[(df['x1']<0.2 )].index)
+    # if ls[k] == 'NDBI':
+    #     df = df.drop(df[(df['x1']<0 )].index)
+    # if ls[k] == 'MNDWI':
+    #     df = df.drop(df[(df['x1']<0.2 )].index)
         # df.to_excel('NDVI'+season[l]+'.xlsx',index=False)
     # sns.kdeplot(
     #     x = 'x1' , y = 'JAN_tem',
@@ -76,17 +79,25 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
 
     res = stats.linregress(x1_1,df.JAN_tem)
     print(res)
+    sns.plotting_context('talk', rc={'lines.linewidth': 20})
     p = sns.regplot(x='x1', y='JAN_tem', data=df,ci=None,scatter=False,
-                label=f'y={res.slope:.2f}x+{res.intercept:.2f} \n r = {res.rvalue:.2f} \n p = {res.pvalue:.2f}', #\n r\u00b2 ={res.rvalue**2:.2f}
+                label=f''
+                      # f'y={res.slope:.2f}x+{res.intercept:.2f} \n,'
+                      f' r = {res.rvalue:.2f} \n p = {res.pvalue:.2f}', #\n r\u00b2 ={res.rvalue**2:.2f}
                 # locals = 'right',
                 ax=ax,
-                color = 'black'
+                color = 'black',
+                line_kws={'linewidth': 5}
                 )
+    left = df['x1'].min()
+    top  = df['JAN_tem'].min()
     ax.tick_params(axis='y', labelsize=50)
     ax.tick_params(axis='x', labelsize=50)
-    plt.xlabel(ls[k]+'（'+season1[l]+'）',fontsize = 70)
-    plt.ylabel('地表温度'+'(°C)',fontsize = 70)
-    p.legend(loc = 'upper right',fontsize = 50)
+    ax.text(left,top,'('+axtest[m]+')', horizontalalignment='left', verticalalignment='top',family='Times New Roman',fontsize=80)
+
+    plt.xlabel(ls[k]+'('+season[l]+')',fontsize = 70,family='Times New Roman')
+    plt.ylabel('LST(℃)',fontsize = 70,family='Times New Roman')
+    p.legend(loc = 'upper right',fontsize = 70,frameon=False,prop = font1)
     k = k + 1
     i = i + 1
     if k == 4:
@@ -105,6 +116,7 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     # ax.set(xlim=(-1, 1),
     # #        # ylim=(-25,45)
     #        )
+    m = m + 1
 
 # ax.set(xlim=(-1, 1),ylim=(-25,45))
 f.subplots_adjust(0.035, 0.04, 0.99, 0.99, .14, .14)
