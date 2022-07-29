@@ -78,7 +78,7 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
     x1_1 = list(df.x1)
 
     res = stats.linregress(x1_1,df.JAN_tem)
-    print(res)
+    # print(res)
     sns.plotting_context('talk', rc={'lines.linewidth': 20})
     p = sns.regplot(x='x1', y='JAN_tem', data=df,ci=None,scatter=False,
                 label=f''
@@ -97,7 +97,10 @@ for ax, s in zip(axes.flatten(order='F'), np.linspace(0, 3, 12)):
 
     plt.xlabel(ls[k]+'('+season[l]+')',fontsize = 70,family='Times New Roman')
     plt.ylabel('LST(℃)',fontsize = 70,family='Times New Roman')
-    p.legend(loc = 'upper right',fontsize = 70,frameon=False,prop = font1)
+    if ls[k] == 'NDBI':
+        p.legend(loc='lower right', fontsize=70, frameon=False, prop=font1,framealpha=0)
+    else:
+        p.legend(loc = 'upper right',fontsize = 70,frameon=False,prop = font1,framealpha=0)
     k = k + 1
     i = i + 1
     if k == 4:
