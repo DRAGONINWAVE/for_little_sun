@@ -8,6 +8,7 @@ path = r'F:\ERA5\ERA5\\'
 global path2
 path2 = 'temperature\mean\\'
 #create the filenames will be used
+
 def FILENAMES(start, end):
     filenames = []
     for year in tqdm(range(start,end + 1),desc='creating the filenames'):
@@ -21,8 +22,8 @@ def FILENAMES(start, end):
 def MEAN_TEMP(path2,filenames):
     f1 = xr.Dataset()
     for filename in tqdm(filenames,desc='computing mean temperature'):
-        f = xr.open_dataset(path + path2 + filename)
-        f1 = xr.merge([f1,f])
+        f  = xr.open_dataset(path + path2 + filename)
+        f1 = xr.merge([f,f1])
     return f1
 
 def CONCAT_ARRAYS(filenames):
@@ -34,10 +35,10 @@ def CONCAT_ARRAYS(filenames):
     return f1
 
 def main():
+    # global filenames
     filenames = FILENAMES(2000,2020)
     TEMP = MEAN_TEMP(path2,filenames)
-    # concat_files = CONCAT_ARRAYS(filenames)
-    print(len(TEMP['t2m'].mean(dim=['time'])))
+    TEMP.to_netcdf('2000-2020mean.nc')
     # print(concat_files)
 
 if __name__ == '__main__':
