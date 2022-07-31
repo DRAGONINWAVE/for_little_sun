@@ -30,9 +30,10 @@ def MEAN_TEMP(read_path,filenames,value,name):
     return f2
 
 def main():
-    filenames = FILENAMES(start=2000,end=2020)
-    TEMP  = MEAN_TEMP(path2,filenames,'t2m',name='M2000_2020mean_mean.nc')
-    print(TEMP)
+    # filenames = FILENAMES(start=2000,end=2020)
+    # TEMP  = MEAN_TEMP(path2,filenames,'t2m',name='M2000_2020mean_mean.nc')
+    # print(TEMP)
+    # print(pd.date_range(start='2000-1', end='2022-12', freq='M'))
 
 if __name__ == '__main__':
     main()
