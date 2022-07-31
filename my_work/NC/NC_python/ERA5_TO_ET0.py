@@ -18,24 +18,23 @@ def FILENAMES(start, end):
             filenames.append(str(year)+month+'.nc')
     return filenames
 
-#合并所有的nc文件
-def MEAN_TEMP(path2,filenames):
+#合并所有的nc文件,并求出各年每月平均
+def MEAN_TEMP(read_path,filenames,value,name):
     f1 = xr.Dataset()
     for filename in tqdm(filenames,desc='computing mean temperature'):
-        f  = xr.open_dataset(path + path2 + filename)
+        f  = xr.open_dataset(path + read_path + filename)
         f1 = xr.merge([f,f1])
-    return f1
+    f2 = f1[value]
+    f2.to_netcdf(name)
+    return f2
 
 def main():
-    # global filenames
-    filenames = FILENAMES(2000,2020)
-    TEMP  = MEAN_TEMP(path2,filenames)
-    TEMPA = TEMP['t2m']
-    TEMPA = TEMPA.resample(time='1m').mean()
-    TEMPA.to_netcdf('2000-2020mean.nc')
-    print(xr.open_dataset('2000-2020mean.nc'))
 
-    # print(concat_files)
+    filenames = FILENAMES(start=2000,end=2020)
+    TEMP  = MEAN_TEMP(path2,filenames,'t2m',name='M2000_2020mean_mean.nc')
+    # TEMPA = TEMP['t2m']
+    # TEMPA = TEMPA.resample(time='1m').mean()
+    # TEMPA.to_netcdf('2000-2020mean.nc')
 
 if __name__ == '__main__':
     main()
