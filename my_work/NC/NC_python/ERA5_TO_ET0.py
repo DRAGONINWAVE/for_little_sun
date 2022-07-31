@@ -25,16 +25,14 @@ def MEAN_TEMP(read_path,filenames,value,name):
         f  = xr.open_dataset(path + read_path + filename)
         f1 = xr.merge([f,f1])
     f2 = f1[value]
+    f2 = f2.resample(time='1m').mean()
     f2.to_netcdf(name)
     return f2
 
 def main():
-
     filenames = FILENAMES(start=2000,end=2020)
     TEMP  = MEAN_TEMP(path2,filenames,'t2m',name='M2000_2020mean_mean.nc')
-    # TEMPA = TEMP['t2m']
-    # TEMPA = TEMPA.resample(time='1m').mean()
-    # TEMPA.to_netcdf('2000-2020mean.nc')
+    print(TEMP)
 
 if __name__ == '__main__':
     main()
