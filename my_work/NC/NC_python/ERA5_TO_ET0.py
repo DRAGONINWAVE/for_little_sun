@@ -17,8 +17,8 @@ def FILENAMES(start, end):
             month = str(month).zfill(2)
             filenames.append(str(year)+month+'.nc')
     return filenames
-#计算每月的平均温度
 
+#合并所有的nc文件
 def MEAN_TEMP(path2,filenames):
     f1 = xr.Dataset()
     for filename in tqdm(filenames,desc='computing mean temperature'):
@@ -26,19 +26,15 @@ def MEAN_TEMP(path2,filenames):
         f1 = xr.merge([f,f1])
     return f1
 
-def CONCAT_ARRAYS(filenames):
-    xadv_new = []
-    for i in tqdm(range(len(filenames)),desc='concating arrays'):
-        f0 = xr.open_dataset(path + path2 + filenames[i])
-        xadv_new.append(f0['t2m'])
-    f1 = xr.concat(xadv_new,dim=['time'])
-    return f1
-
 def main():
     # global filenames
     filenames = FILENAMES(2000,2020)
-    TEMP = MEAN_TEMP(path2,filenames)
-    TEMP.to_netcdf('2000-2020mean.nc')
+    TEMP  = MEAN_TEMP(path2,filenames)
+    TEMPA = TEMP['t2m']
+    TEMPA = TEMPA.resample(time='1m').mean()
+    TEMPA.to_netcdf('2000-2020mean.nc')
+    print(xr.open_dataset('2000-2020mean.nc'))
+
     # print(concat_files)
 
 if __name__ == '__main__':
