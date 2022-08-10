@@ -29,6 +29,10 @@ def MEAN_TEMP(read_path,filenames,value,name):
     f2.to_netcdf(name)
     return f2
 
+#计算日序
+def Julian_date():
+    pass
+
 def main():
     filenames = FILENAMES(start=2000,end=2020)
     TEMP  = MEAN_TEMP(path2,filenames,'t2m',name='M2000_2020mean_mean.nc')
