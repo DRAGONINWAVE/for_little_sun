@@ -50,18 +50,18 @@ def main():
     # OUMIGA = np.arccos(-1*np.array(np.tan((data['lat']) * 2 * np.pi /360)) @ np.array(np.tan(data['julian_date_year'])).T)
     OUMIGA = np.arccos(OUMIGA)
     data['OUMIGA'] = OUMIGA[0]
-    print(OUMIGA)
-    print(data)
+    # print(OUMIGA)
+    # print(data)
 
     ## 计算日照时长：K，单位：12h
     K = 2 * OUMIGA / np.pi
-    print(K.shape)
+    print(K)
 
     ## 计算PET，（PEThamon）
     N_R = (data['time.dayofyear'] * rou_W)
-    print(data)
-    PEThamon = 0.1651 * N_R * K
-    print(PEThamon)
+    # print(data)
+    PEThamon = 0.1651 * N_R[:,:,0] * K
+    print(PEThamon.shape)
 
 
 if __name__ == '__main__':
