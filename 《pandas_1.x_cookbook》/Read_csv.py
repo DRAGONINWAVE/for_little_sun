@@ -16,4 +16,9 @@ print(movie['sentiment'],movie.sentiment)
 print('movie.loc',movie.loc[:,'sentiment'])
 print('movie.iloc',movie.iloc[:,1])
 
-#
+print(movie['sentiment'].index)
+print(movie['sentiment'].dtypes)
+print(movie['sentiment'].size)
+print(movie['sentiment'].name)
+print(type(movie['sentiment']))
+print(movie['sentiment'].apply(type).unique())
