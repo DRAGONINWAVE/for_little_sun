@@ -55,14 +55,13 @@ def main():
 
     ## 计算日照时长：K，单位：12h
     K = 2 * OUMIGA / np.pi
-    print(K.shape)
+    # print(K.shape)
 
     ## 计算PET，（PEThamon）
     N_R = (data['time.dayofyear'] * rou_W)
     # print(data)
-    PEThamon = 0.1651 * N_R[:,:,0] * K
+    PEThamon = 0.1651 * K * N_R[:,:,20]
     print(PEThamon)
-
 
 if __name__ == '__main__':
     main()
