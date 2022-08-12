@@ -4,3 +4,6 @@ import pandas as pd
 movie = pd.read_csv(r'D:\迅雷下载\archive\IMDB Dataset.csv')
 print(movie.columns)
 print(movie.index)
+print(movie.dtypes)
+print(movie.dtypes.value_counts)
+print(movie.info)
