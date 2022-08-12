@@ -41,15 +41,28 @@ def main():
     ## 计算月中julian_date的太阳偏角:SIGMA
     SIGMA_all  = 0.4093 * np.sin(2*np.pi*np.array(data['jul2'])/365 - 1.405)
     SIGMA_year = 0.4093 * np.sin(2*np.pi*np.array(julian_date_year)/365 - 1.405)
+    data['SIGMA_year'] = SIGMA_year
     # print(SIGMA_all,SIGMA_year)
 
     ## 计算日落时角：OUMIG
-    # OUMIGA = np.reshape(newshape=[50,252])
-    OUMIGA = np.outer(-1*np.array(np.tan((data['lat']) * 2 * np.pi /360)),np.array(np.tan(julian_date_year)))
+    OUMIGA = np.outer(np.array(np.tan(SIGMA_year)),-1*np.array(np.tan((data['lat']) * 2 * np.pi /360)))
+    # OUMIGA = (-1*np.array(np.tan((data['lat']) * 2 * np.pi /360))*np.array(np.tan(data['SIGMA_year'])))
     # OUMIGA = np.arccos(-1*np.array(np.tan((data['lat']) * 2 * np.pi /360)) @ np.array(np.tan(data['julian_date_year'])).T)
-    print(np.arccos(OUMIGA))
-    # K = 2 * OUMIGA / np.pi
-    # print(K)
+    OUMIGA = np.arccos(OUMIGA)
+    data['OUMIGA'] = OUMIGA[0]
+    print(OUMIGA)
+    print(data)
+
+    ## 计算日照时长：K，单位：12h
+    K = 2 * OUMIGA / np.pi
+    print(K.shape)
+
+    ## 计算PET，（PEThamon）
+    N_R = (data['time.dayofyear'] * rou_W)
+    print(data)
+    PEThamon = 0.1651 * N_R * K
+    print(PEThamon)
+
 
 if __name__ == '__main__':
     main()
