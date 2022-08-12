@@ -57,7 +57,7 @@ def main():
     K = 2 * OUMIGA / np.pi
     # print(K.shape)
 
-    ## 计算PET，（PEThamon）
+    ## 计算PET，（PEThamon）,但好像只能一个经度一个经度来进行计算
     N_R = (data['time.dayofyear'] * rou_W)
     # print(data)
     PEThamon = 0.1651 * K * N_R[:,:,20]
