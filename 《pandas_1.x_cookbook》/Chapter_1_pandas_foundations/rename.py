@@ -3,7 +3,7 @@ import pandas as pd
 # .rename
 from pandas import Index
 
-movies = pd.read_csv('ratings.csv')
+movies = pd.read_csv('../ratings.csv')
 # print(movies.columns)
 col = {'Directors': 'directors'}
 print(type(col))
