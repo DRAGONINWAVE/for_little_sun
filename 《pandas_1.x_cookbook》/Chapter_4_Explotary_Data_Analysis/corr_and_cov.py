@@ -60,7 +60,7 @@ res1 =  sns.relplot(
     legend = 'brief',
 
 )
-plt.legend([(vehicle.barrels08)], ["barrels08"], loc='upper center')
+
 res1.fig.savefig(
    "c5-relplot3.png", dpi=300, bbox_inches="tight"
 )
