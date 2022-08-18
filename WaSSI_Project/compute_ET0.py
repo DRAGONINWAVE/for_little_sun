@@ -7,6 +7,7 @@ from tqdm import tqdm
 def main():
     ##读取nc文件
     data = xr.open_dataset(r'D:\TD\my_work\NC\NC_python\M2000_2020mean_mean.nc')
+    print(data)
     # data = data.resample(time='1MS')
     ## 计算平均摄氏度：TEMP；饱和蒸汽压：e；饱和蒸汽压密度：rou_W
     TEMP = data['t2m'] - 273.3
