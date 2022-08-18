@@ -57,7 +57,8 @@ res1 =  sns.relplot(
     height = 8,
     col = 'make',
     col_order = ['Tesla','Ford'],
-    legend = 'brief'
+    legend = 'brief',
+
 )
 plt.legend([(vehicle.barrels08)], ["barrels08"], loc='upper center')
 res1.fig.savefig(
