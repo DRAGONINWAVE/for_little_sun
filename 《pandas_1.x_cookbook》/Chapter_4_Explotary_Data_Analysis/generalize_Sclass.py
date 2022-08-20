@@ -1,7 +1,10 @@
+# from ctypes import kind
+
 import pandas as pd
 import scipy.stats as ss
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def generalize(ser,match_name,default):
@@ -51,3 +54,13 @@ data.pipe(
 ).plot.bar(ax=ax)
 
 fig.savefig("c5-bar.png", dpi=300, bbox_inches="tight")
+
+
+res = sns.catplot(
+    kind = 'count',
+    hue = 'SClass',
+    x = 'make',
+    data = data,
+)
+
+res.fig.savefig("c5-catplot.png",dpi=300, bbox_inches="tight")
