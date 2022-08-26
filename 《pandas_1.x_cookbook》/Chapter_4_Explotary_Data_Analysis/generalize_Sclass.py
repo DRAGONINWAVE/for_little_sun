@@ -64,3 +64,10 @@ res = sns.catplot(
 )
 
 res.fig.savefig("c5-catplot.png",dpi=300, bbox_inches="tight")
+
+
+fig,ax = plt.subplots(figsize=(10,8))
+data.pipe(
+    lambda df_:pd.crosstab(df_.make,df_.SClass)
+).pipe(lambda df_: df_.div(df_.sum(axis=1),axis=0)).plot.bar(stacked=True,ax=ax)
+fig.savefig("c5-barstacked.png",dpi=300, bbox_inches="tight")
